@@ -54,4 +54,10 @@
         admin.Show()
     End Sub
 
+    Private Sub ManagePositionsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ManagePositionsToolStripMenuItem1.Click
+        closeForms()
+        positions.MdiParent = Me
+        positions.Show()
+    End Sub
+
 End Class

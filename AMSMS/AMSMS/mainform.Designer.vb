@@ -25,13 +25,17 @@ Partial Class mainform
         Me.msMain = New System.Windows.Forms.MenuStrip()
         Me.AdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManageAccountsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmployeesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ManageEmployeesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ManagePositionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ManagePositionsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.msMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'msMain
         '
         Me.msMain.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem})
+        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.EmployeesToolStripMenuItem})
         Me.msMain.Location = New System.Drawing.Point(0, 0)
         Me.msMain.Name = "msMain"
         Me.msMain.Size = New System.Drawing.Size(736, 26)
@@ -50,6 +54,31 @@ Partial Class mainform
         Me.ManageAccountsToolStripMenuItem.Name = "ManageAccountsToolStripMenuItem"
         Me.ManageAccountsToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.ManageAccountsToolStripMenuItem.Text = "Manage Accounts"
+        '
+        'EmployeesToolStripMenuItem
+        '
+        Me.EmployeesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManageEmployeesToolStripMenuItem, Me.ManagePositionsToolStripMenuItem, Me.ManagePositionsToolStripMenuItem1})
+        Me.EmployeesToolStripMenuItem.Name = "EmployeesToolStripMenuItem"
+        Me.EmployeesToolStripMenuItem.Size = New System.Drawing.Size(88, 22)
+        Me.EmployeesToolStripMenuItem.Text = "Employees"
+        '
+        'ManageEmployeesToolStripMenuItem
+        '
+        Me.ManageEmployeesToolStripMenuItem.Name = "ManageEmployeesToolStripMenuItem"
+        Me.ManageEmployeesToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.ManageEmployeesToolStripMenuItem.Text = "Manage Employees"
+        '
+        'ManagePositionsToolStripMenuItem
+        '
+        Me.ManagePositionsToolStripMenuItem.Name = "ManagePositionsToolStripMenuItem"
+        Me.ManagePositionsToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.ManagePositionsToolStripMenuItem.Text = "Manage Logins"
+        '
+        'ManagePositionsToolStripMenuItem1
+        '
+        Me.ManagePositionsToolStripMenuItem1.Name = "ManagePositionsToolStripMenuItem1"
+        Me.ManagePositionsToolStripMenuItem1.Size = New System.Drawing.Size(196, 22)
+        Me.ManagePositionsToolStripMenuItem1.Text = "Manage Positions"
         '
         'mainform
         '
@@ -76,4 +105,8 @@ Partial Class mainform
     Friend WithEvents msMain As MenuStrip
     Friend WithEvents AdminToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ManageAccountsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EmployeesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ManageEmployeesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ManagePositionsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ManagePositionsToolStripMenuItem1 As ToolStripMenuItem
 End Class

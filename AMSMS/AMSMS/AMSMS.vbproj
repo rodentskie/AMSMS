@@ -117,6 +117,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Positions\positionAdd.Designer.vb">
+      <DependentUpon>positionAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Positions\positionAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Positions\positionEdit.Designer.vb">
+      <DependentUpon>positionEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Positions\positionEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Positions\positions.Designer.vb">
+      <DependentUpon>positions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Positions\positions.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\dgvPaging.vb" />
     <Compile Include="Utilities\functions.vb" />
     <Compile Include="Utilities\queries.vb" />
@@ -143,6 +161,15 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Positions\positionAdd.resx">
+      <DependentUpon>positionAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Positions\positionEdit.resx">
+      <DependentUpon>positionEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Positions\positions.resx">
+      <DependentUpon>positions.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

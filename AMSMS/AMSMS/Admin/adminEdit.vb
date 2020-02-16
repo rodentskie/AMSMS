@@ -67,9 +67,14 @@
 
 
         'update db
-        q.adminUpdateAccount(admin.id)
-        bool = True
-        Me.Close()
+        Dim updateBool = q.adminUpdateAccount(admin.id)
+        If updateBool = True Then
+            bool = True
+            Me.Close()
+        Else
+            txtUsername.Focus()
+            Exit Sub
+        End If
     End Sub
 
 End Class
