@@ -47,6 +47,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AxInterop.ZKFPEngXControl">
+      <HintPath>bin\Debug\dlls\AxInterop.ZKFPEngXControl.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -88,6 +91,18 @@
       <DependentUpon>adminEdit.vb</DependentUpon>
     </Compile>
     <Compile Include="Admin\adminEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employees\employeeAdd.Designer.vb">
+      <DependentUpon>employeeAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\employeeAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employees\employees.Designer.vb">
+      <DependentUpon>employees.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\employees.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Employees\loginForm.Designer.vb">
@@ -149,6 +164,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\adminEdit.resx">
       <DependentUpon>adminEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employees\employeeAdd.resx">
+      <DependentUpon>employeeAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employees\employees.resx">
+      <DependentUpon>employees.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Employees\loginForm.resx">
       <DependentUpon>loginForm.vb</DependentUpon>

@@ -60,4 +60,10 @@
         positions.Show()
     End Sub
 
+    Private Sub ManageEmployeesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManageEmployeesToolStripMenuItem.Click
+        closeForms()
+        employees.MdiParent = Me
+        employees.Show()
+    End Sub
+
 End Class
