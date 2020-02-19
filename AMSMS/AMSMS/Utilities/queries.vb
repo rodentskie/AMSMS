@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports System.Text.RegularExpressions
+
 Public Class queries
     Public SQL As New SQLControl
     Private f As New functions
@@ -319,6 +321,259 @@ Public Class queries
         Exit Sub
 
     End Sub
+
+    'fetch data single employee
+    Public Sub employeeSelectOne(id As String)
+        SQL.AddParam("@id", id)
+        SQL.ExecQueryDT("
+            SELECT e.*,p.position_name FROM employees e LEFT JOIN positions p ON p.id = e.position
+            WHERE employee_id = @id;
+        ")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                If Not IsDBNull(r(0)) Then
+                    employeeUpdate.txtId.Text = r(0)
+                End If
+                '--
+                If Not IsDBNull(r(1)) Then
+                    employeeUpdate.txtFn.Text = r(1)
+                End If
+                '--
+                If Not IsDBNull(r(2)) Then
+                    employeeUpdate.txtMn.Text = r(2)
+                End If
+                '--
+                If Not IsDBNull(r(3)) Then
+                    employeeUpdate.txtLn.Text = r(3)
+                End If
+                '--
+                If Not IsDBNull(r(4)) Then
+                    employeeUpdate.txtNick.Text = r(4)
+                End If
+                '--
+                If Not IsDBNull(r(5)) Then
+                    employeeUpdate.txtAddress.Text = r(5)
+                End If
+                '--
+                If Not IsDBNull(r(6)) Then
+                    employeeUpdate.cbxGender.Text = r(6)
+                End If
+                '--
+                If Not IsDBNull(r(8)) Then
+                    employeeUpdate.txtContact.Text = r(8)
+                End If
+                '--
+                If Not IsDBNull(r(10)) Then
+                    employeeUpdate.cbxPositions.Text = r(10)
+                End If
+                '--
+            Next
+        End If
+    End Sub
+
+    'update employee
+    Public Function employeeSaveUpdate(id As String)
+        Dim bool = False
+
+        'check if employee already exist
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@fn", employeeUpdate.txtFn.Text)
+        SQL.AddParam("@ln", employeeUpdate.txtLn.Text)
+        SQL.ExecQueryDT("
+                SELECT * FROM employees WHERE LOWER(fname) = LOWER(@fn)
+                AND LOWER(lname) = LOWER(@ln) AND employee_id <> @id;
+        ")
+        If SQL.HasException(True) Then Return Nothing
+        If SQL.RecordCountDT > 0 Then
+            MessageBox.Show("Employee already exist!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return Nothing
+        End If
+
+        'check if there is finger scanned
+        If employeeUpdate.template <> "" Then
+            'if there is; update template
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@fn", employeeUpdate.txtFn.Text)
+            SQL.AddParam("@mn", employeeUpdate.txtMn.Text)
+            SQL.AddParam("@ln", employeeUpdate.txtLn.Text)
+            SQL.AddParam("@nick", employeeUpdate.txtNick.Text)
+            SQL.AddParam("@address", employeeUpdate.txtAddress.Text)
+            SQL.AddParam("@gender", employeeUpdate.cbxGender.Text)
+            SQL.AddParam("@contact", employeeUpdate.txtContact.Text)
+            SQL.AddParam("@pos", employeeUpdate.positionId)
+            SQL.AddParam("@temp", employeeUpdate.template)
+
+            SQL.ExecQueryDT("
+            UPDATE employees SET fname=@fn, mname=@mn, lname=@ln, nick=@nick, address=@address,
+            gender=@gender, contact_num=@contact, position=@pos, template=@temp WHERE employee_id=@id;
+            ")
+            If SQL.HasException(True) Then Return Nothing
+            bool = True
+            MessageBox.Show("Employee updated successfully.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            employeeUpdate.txtId.Text = ""
+            employeeUpdate.txtFn.Text = ""
+            employeeUpdate.txtMn.Text = ""
+            employeeUpdate.txtLn.Text = ""
+            employeeUpdate.txtNick.Text = ""
+            employeeUpdate.txtAddress.Text = ""
+            employeeUpdate.cbxGender.SelectedIndex = 0
+            employeeUpdate.cbxPositions.SelectedIndex = 0
+            employeeUpdate.txtContact.Text = ""
+            employeeUpdate.template = ""
+            employeeUpdate.fpicture.Image = Nothing
+        Else
+            'if there is none; don't update template
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@fn", employeeUpdate.txtFn.Text)
+            SQL.AddParam("@mn", employeeUpdate.txtMn.Text)
+            SQL.AddParam("@ln", employeeUpdate.txtLn.Text)
+            SQL.AddParam("@nick", employeeUpdate.txtNick.Text)
+            SQL.AddParam("@address", employeeUpdate.txtAddress.Text)
+            SQL.AddParam("@gender", employeeUpdate.cbxGender.Text)
+            SQL.AddParam("@contact", employeeUpdate.txtContact.Text)
+            SQL.AddParam("@pos", employeeUpdate.positionId)
+
+            SQL.ExecQueryDT("
+            UPDATE employees SET fname=@fn, mname=@mn, lname=@ln, nick=@nick, address=@address,
+            gender=@gender, contact_num=@contact, position=@pos WHERE employee_id=@id;
+            ")
+            If SQL.HasException(True) Then Return Nothing
+            bool = True
+            MessageBox.Show("Employee updated successfully.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            employeeUpdate.txtId.Text = ""
+            employeeUpdate.txtFn.Text = ""
+            employeeUpdate.txtMn.Text = ""
+            employeeUpdate.txtLn.Text = ""
+            employeeUpdate.txtNick.Text = ""
+            employeeUpdate.txtAddress.Text = ""
+            employeeUpdate.cbxGender.SelectedIndex = 0
+            employeeUpdate.cbxPositions.SelectedIndex = 0
+            employeeUpdate.txtContact.Text = ""
+            employeeUpdate.template = ""
+            employeeUpdate.fpicture.Image = Nothing
+        End If
+
+        Return bool
+    End Function
+
+    'load dgv employees accounts
+    Public Sub empLoginLoadDgv(dgv As DataGridView, filter As String)
+        If filter <> "" Then
+            SQL.AddParam("@filter", "%" & filter & "%")
+            SQL.ExecQueryDT("
+                SELECT o.id,CONCAT(e.lname,', ',e.fname) name, username,password FROM officer_logins o
+                LEFT JOIN employees e ON e.employee_id = o.employee_id WHERE CONCAT(e.lname,', ',e.fname)
+                LIKE @filter OR username LIKE @filter;
+            ")
+        Else
+            SQL.ExecQueryDT("
+                SELECT o.id,CONCAT(e.lname,', ',e.fname) name, username,password FROM officer_logins o
+                LEFT JOIN employees e ON e.employee_id = o.employee_id;
+            ")
+        End If
+
+        If SQL.HasException(True) Then Exit Sub
+        dgv.AllowUserToResizeColumns = False
+        dgv.AllowUserToResizeRows = False
+        dgv.AllowUserToAddRows = False
+        dgv.DataSource = SQL.DBDT
+        dgv.ClearSelection()
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        '##########
+        dgv.Columns(0).Visible = False
+        dgv.Columns(1).HeaderText = "EMPLOYEE NAME"
+        dgv.Columns(2).HeaderText = "USERNAME"
+        dgv.Columns(3).HeaderText = "HASH PASSWORD"
+        dgv.Columns(1).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(2).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(3).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.RowTemplate.Height = 30
+    End Sub
+
+    'load listbox of employee with no account
+    Public Sub empLoginLoadLb(lb As ListBox, txt As TextBox)
+        lb.Items.Clear()
+
+        SQL.AddParam("@filter", "%" & txt.Text & "%")
+        SQL.ExecQueryDT("
+            SELECT CONCAT(e.employee_id,' | ',lname,', ',fname) emp FROM employees e
+            LEFT JOIN officer_logins o ON o.employee_id = e.employee_id
+            WHERE o.employee_id IS NULL AND e.employee_id LIKE @filter OR
+            o.employee_id IS NULL AND e.lname LIKE @filter;
+        ")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                lb.Items.Add(r(0))
+            Next
+        End If
+    End Sub
+
+    'insert to officer login table
+    Public Function empLoginAdds()
+        Dim bool = False
+
+        'check if username exist
+        SQL.AddParam("@uname", empLoginAdd.txtUname.Text)
+        SQL.ExecQueryDT("SELECT * FROM officer_logins WHERE LOWER(username) = LOWER(@uname);")
+        If SQL.HasException(True) Then Return Nothing
+        If SQL.RecordCountDT > 0 Then
+            MessageBox.Show("Employee's username already exist. Please try again.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
+        End If
+
+        'insert to db
+        SQL.AddParam("@id", empLoginAdd.id)
+        SQL.AddParam("@uname", empLoginAdd.txtUname.Text)
+        SQL.AddParam("@pw", f.GetHash(empLoginAdd.txtPw.Text))
+
+        SQL.ExecQueryDT("
+            INSERT INTO officer_logins (username,password,employee_id)
+            VALUES (@uname,@pw,@id);
+        ")
+        If SQL.HasException(True) Then Return Nothing
+        bool = True
+        MessageBox.Show("Account added successfully.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        empLoginAdd.id = ""
+        empLoginAdd.txtUname.Text = ""
+        empLoginAdd.txtPw.Text = ""
+        empLoginAdd.txtRePw.Text = ""
+
+        Return bool
+    End Function
+
+    'update employee accounts
+
+    'update admin account
+    Public Function empLoginUpdates(id As String)
+        Dim bool = False
+
+        'check if username exists
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@uname", empLoginUpdate.txtUsername.Text)
+        SQL.ExecQueryDT("SELECT * FROM officer_logins WHERE LOWER(username) = @uname AND id <> @id;")
+        If SQL.HasException(True) Then Return Nothing
+        If SQL.RecordCountDT > 0 Then
+            'username exists
+            MessageBox.Show("Username already exist. Please try again.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return bool
+        End If
+
+        'update to db
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@uname", empLoginUpdate.txtUsername.Text)
+        SQL.AddParam("@hash", f.GetHash(empLoginUpdate.txtPw.Text))
+        SQL.ExecQueryDT("UPDATE officer_logins SET username=@uname, password=@hash WHERE id=@id;")
+        If SQL.HasException(True) Then Return Nothing
+        MessageBox.Show("Account updated successfully.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        empLoginUpdate.txtUsername.Text = ""
+        empLoginUpdate.txtPw.Text = ""
+        empLoginUpdate.txtRePw.Text = ""
+        bool = True
+
+        Return bool
+    End Function
 
     '## com ports
 

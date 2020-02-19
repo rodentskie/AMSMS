@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class employeeAdd
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class employeeUpdate
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,11 +20,9 @@ Partial Class employeeAdd
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.fpicture = New System.Windows.Forms.PictureBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.lblGuide = New System.Windows.Forms.Label()
         Me.txtContact = New System.Windows.Forms.TextBox()
@@ -46,26 +44,202 @@ Partial Class employeeAdd
         Me.txtId = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btnClear = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.sp = New System.IO.Ports.SerialPort(Me.components)
-        Me.lblClear = New System.Windows.Forms.Label()
-        CType(Me.fpicture, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.fpicture = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.fpicture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'fpicture
+        'Label1
         '
-        Me.fpicture.BackColor = System.Drawing.SystemColors.Window
-        Me.fpicture.Location = New System.Drawing.Point(520, 49)
-        Me.fpicture.Name = "fpicture"
-        Me.fpicture.Size = New System.Drawing.Size(199, 205)
-        Me.fpicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.fpicture.TabIndex = 29
-        Me.fpicture.TabStop = False
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(8, 18)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(153, 22)
+        Me.Label1.TabIndex = 33
+        Me.Label1.Text = "Update Employee"
+        '
+        'btnAdd
+        '
+        Me.btnAdd.Location = New System.Drawing.Point(518, 276)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(199, 36)
+        Me.btnAdd.TabIndex = 10
+        Me.btnAdd.Text = "Update"
+        Me.btnAdd.UseVisualStyleBackColor = True
+        '
+        'lblGuide
+        '
+        Me.lblGuide.AutoSize = True
+        Me.lblGuide.Location = New System.Drawing.Point(515, 34)
+        Me.lblGuide.Name = "lblGuide"
+        Me.lblGuide.Size = New System.Drawing.Size(71, 15)
+        Me.lblGuide.TabIndex = 49
+        Me.lblGuide.Text = "Finger Print"
+        '
+        'txtContact
+        '
+        Me.txtContact.Location = New System.Drawing.Point(236, 277)
+        Me.txtContact.Name = "txtContact"
+        Me.txtContact.Size = New System.Drawing.Size(223, 23)
+        Me.txtContact.TabIndex = 9
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(218, 259)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(95, 15)
+        Me.Label10.TabIndex = 47
+        Me.Label10.Text = "Contact Number"
+        '
+        'cbxPositions
+        '
+        Me.cbxPositions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxPositions.FormattingEnabled = True
+        Me.cbxPositions.Location = New System.Drawing.Point(236, 216)
+        Me.cbxPositions.Name = "cbxPositions"
+        Me.cbxPositions.Size = New System.Drawing.Size(223, 23)
+        Me.cbxPositions.TabIndex = 8
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(218, 198)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(52, 15)
+        Me.Label9.TabIndex = 45
+        Me.Label9.Text = "Position"
+        '
+        'cbxGender
+        '
+        Me.cbxGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxGender.FormattingEnabled = True
+        Me.cbxGender.Items.AddRange(New Object() {"Male", "Female"})
+        Me.cbxGender.Location = New System.Drawing.Point(236, 160)
+        Me.cbxGender.Name = "cbxGender"
+        Me.cbxGender.Size = New System.Drawing.Size(223, 23)
+        Me.cbxGender.TabIndex = 7
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(218, 142)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(46, 15)
+        Me.Label8.TabIndex = 43
+        Me.Label8.Text = "Gender"
+        '
+        'txtAddress
+        '
+        Me.txtAddress.Location = New System.Drawing.Point(236, 52)
+        Me.txtAddress.Multiline = True
+        Me.txtAddress.Name = "txtAddress"
+        Me.txtAddress.Size = New System.Drawing.Size(223, 76)
+        Me.txtAddress.TabIndex = 6
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(218, 34)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(51, 15)
+        Me.Label7.TabIndex = 41
+        Me.Label7.Text = "Address"
+        '
+        'txtNick
+        '
+        Me.txtNick.Location = New System.Drawing.Point(22, 277)
+        Me.txtNick.Name = "txtNick"
+        Me.txtNick.Size = New System.Drawing.Size(185, 23)
+        Me.txtNick.TabIndex = 5
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(4, 259)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(65, 15)
+        Me.Label6.TabIndex = 39
+        Me.Label6.Text = "Nick Name"
+        '
+        'txtLn
+        '
+        Me.txtLn.Location = New System.Drawing.Point(22, 216)
+        Me.txtLn.Name = "txtLn"
+        Me.txtLn.Size = New System.Drawing.Size(185, 23)
+        Me.txtLn.TabIndex = 4
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(4, 198)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(63, 15)
+        Me.Label5.TabIndex = 37
+        Me.Label5.Text = "Last Name"
+        '
+        'txtMn
+        '
+        Me.txtMn.Location = New System.Drawing.Point(22, 160)
+        Me.txtMn.Name = "txtMn"
+        Me.txtMn.Size = New System.Drawing.Size(185, 23)
+        Me.txtMn.TabIndex = 3
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(4, 142)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(80, 15)
+        Me.Label4.TabIndex = 35
+        Me.Label4.Text = "Middle Name"
+        '
+        'txtFn
+        '
+        Me.txtFn.Location = New System.Drawing.Point(22, 107)
+        Me.txtFn.Name = "txtFn"
+        Me.txtFn.Size = New System.Drawing.Size(185, 23)
+        Me.txtFn.TabIndex = 2
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(4, 89)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(66, 15)
+        Me.Label3.TabIndex = 33
+        Me.Label3.Text = "First Name"
+        '
+        'txtId
+        '
+        Me.txtId.Location = New System.Drawing.Point(22, 52)
+        Me.txtId.Name = "txtId"
+        Me.txtId.ReadOnly = True
+        Me.txtId.Size = New System.Drawing.Size(185, 23)
+        Me.txtId.TabIndex = 1
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(4, 34)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(74, 15)
+        Me.Label2.TabIndex = 31
+        Me.Label2.Text = "Employee ID"
+        '
+        'btnClear
+        '
+        Me.btnClear.Location = New System.Drawing.Point(642, 25)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 11
+        Me.btnClear.Text = "Clear"
+        Me.btnClear.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.lblClear)
         Me.GroupBox1.Controls.Add(Me.btnAdd)
         Me.GroupBox1.Controls.Add(Me.lblGuide)
         Me.GroupBox1.Controls.Add(Me.txtContact)
@@ -92,214 +266,21 @@ Partial Class employeeAdd
         Me.GroupBox1.Location = New System.Drawing.Point(12, 52)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(725, 315)
-        Me.GroupBox1.TabIndex = 30
+        Me.GroupBox1.TabIndex = 32
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Input Here"
         '
-        'btnAdd
+        'fpicture
         '
-        Me.btnAdd.Location = New System.Drawing.Point(520, 273)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(199, 36)
-        Me.btnAdd.TabIndex = 10
-        Me.btnAdd.Text = "Add"
-        Me.btnAdd.UseVisualStyleBackColor = True
+        Me.fpicture.BackColor = System.Drawing.SystemColors.Window
+        Me.fpicture.Location = New System.Drawing.Point(518, 52)
+        Me.fpicture.Name = "fpicture"
+        Me.fpicture.Size = New System.Drawing.Size(199, 205)
+        Me.fpicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.fpicture.TabIndex = 29
+        Me.fpicture.TabStop = False
         '
-        'lblGuide
-        '
-        Me.lblGuide.AutoSize = True
-        Me.lblGuide.Location = New System.Drawing.Point(517, 31)
-        Me.lblGuide.Name = "lblGuide"
-        Me.lblGuide.Size = New System.Drawing.Size(71, 15)
-        Me.lblGuide.TabIndex = 49
-        Me.lblGuide.Text = "Finger Print"
-        '
-        'txtContact
-        '
-        Me.txtContact.Location = New System.Drawing.Point(238, 274)
-        Me.txtContact.Name = "txtContact"
-        Me.txtContact.Size = New System.Drawing.Size(223, 23)
-        Me.txtContact.TabIndex = 9
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(220, 256)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(95, 15)
-        Me.Label10.TabIndex = 47
-        Me.Label10.Text = "Contact Number"
-        '
-        'cbxPositions
-        '
-        Me.cbxPositions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxPositions.FormattingEnabled = True
-        Me.cbxPositions.Location = New System.Drawing.Point(238, 213)
-        Me.cbxPositions.Name = "cbxPositions"
-        Me.cbxPositions.Size = New System.Drawing.Size(223, 23)
-        Me.cbxPositions.TabIndex = 8
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(220, 195)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(52, 15)
-        Me.Label9.TabIndex = 45
-        Me.Label9.Text = "Position"
-        '
-        'cbxGender
-        '
-        Me.cbxGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxGender.FormattingEnabled = True
-        Me.cbxGender.Items.AddRange(New Object() {"Male", "Female"})
-        Me.cbxGender.Location = New System.Drawing.Point(238, 157)
-        Me.cbxGender.Name = "cbxGender"
-        Me.cbxGender.Size = New System.Drawing.Size(223, 23)
-        Me.cbxGender.TabIndex = 7
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(220, 139)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(46, 15)
-        Me.Label8.TabIndex = 43
-        Me.Label8.Text = "Gender"
-        '
-        'txtAddress
-        '
-        Me.txtAddress.Location = New System.Drawing.Point(238, 49)
-        Me.txtAddress.Multiline = True
-        Me.txtAddress.Name = "txtAddress"
-        Me.txtAddress.Size = New System.Drawing.Size(223, 76)
-        Me.txtAddress.TabIndex = 6
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(220, 31)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(51, 15)
-        Me.Label7.TabIndex = 41
-        Me.Label7.Text = "Address"
-        '
-        'txtNick
-        '
-        Me.txtNick.Location = New System.Drawing.Point(24, 274)
-        Me.txtNick.Name = "txtNick"
-        Me.txtNick.Size = New System.Drawing.Size(185, 23)
-        Me.txtNick.TabIndex = 5
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(6, 256)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(65, 15)
-        Me.Label6.TabIndex = 39
-        Me.Label6.Text = "Nick Name"
-        '
-        'txtLn
-        '
-        Me.txtLn.Location = New System.Drawing.Point(24, 213)
-        Me.txtLn.Name = "txtLn"
-        Me.txtLn.Size = New System.Drawing.Size(185, 23)
-        Me.txtLn.TabIndex = 4
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 195)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(63, 15)
-        Me.Label5.TabIndex = 37
-        Me.Label5.Text = "Last Name"
-        '
-        'txtMn
-        '
-        Me.txtMn.Location = New System.Drawing.Point(24, 157)
-        Me.txtMn.Name = "txtMn"
-        Me.txtMn.Size = New System.Drawing.Size(185, 23)
-        Me.txtMn.TabIndex = 3
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 139)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(80, 15)
-        Me.Label4.TabIndex = 35
-        Me.Label4.Text = "Middle Name"
-        '
-        'txtFn
-        '
-        Me.txtFn.Location = New System.Drawing.Point(24, 104)
-        Me.txtFn.Name = "txtFn"
-        Me.txtFn.Size = New System.Drawing.Size(185, 23)
-        Me.txtFn.TabIndex = 2
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(6, 86)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(66, 15)
-        Me.Label3.TabIndex = 33
-        Me.Label3.Text = "First Name"
-        '
-        'txtId
-        '
-        Me.txtId.Location = New System.Drawing.Point(24, 49)
-        Me.txtId.Name = "txtId"
-        Me.txtId.ReadOnly = True
-        Me.txtId.Size = New System.Drawing.Size(185, 23)
-        Me.txtId.TabIndex = 1
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 31)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(74, 15)
-        Me.Label2.TabIndex = 31
-        Me.Label2.Text = "Employee ID"
-        '
-        'btnClear
-        '
-        Me.btnClear.Location = New System.Drawing.Point(644, 22)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(75, 23)
-        Me.btnClear.TabIndex = 11
-        Me.btnClear.Text = "Clear"
-        Me.btnClear.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(8, 18)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(128, 22)
-        Me.Label1.TabIndex = 31
-        Me.Label1.Text = "Add Employee"
-        '
-        'sp
-        '
-        '
-        'lblClear
-        '
-        Me.lblClear.AutoSize = True
-        Me.lblClear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblClear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblClear.ForeColor = System.Drawing.Color.Blue
-        Me.lblClear.Location = New System.Drawing.Point(173, 31)
-        Me.lblClear.Name = "lblClear"
-        Me.lblClear.Size = New System.Drawing.Size(36, 15)
-        Me.lblClear.TabIndex = 50
-        Me.lblClear.Text = "Clear"
-        '
-        'employeeAdd
+        'employeeUpdate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -310,19 +291,25 @@ Partial Class employeeAdd
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "employeeAdd"
+        Me.Name = "employeeUpdate"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Add Employee"
-        CType(Me.fpicture, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Text = "Update Employee"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.fpicture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents btnClear As Button
+    Friend WithEvents btnAdd As Button
+    Friend WithEvents lblGuide As Label
+    Friend WithEvents txtContact As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents cbxPositions As ComboBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents cbxGender As ComboBox
+    Friend WithEvents Label8 As Label
     Friend WithEvents txtAddress As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents txtNick As TextBox
@@ -335,15 +322,7 @@ Partial Class employeeAdd
     Friend WithEvents Label3 As Label
     Friend WithEvents txtId As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents cbxGender As ComboBox
-    Friend WithEvents Label8 As Label
-    Friend WithEvents lblGuide As Label
-    Friend WithEvents txtContact As TextBox
-    Friend WithEvents Label10 As Label
-    Friend WithEvents cbxPositions As ComboBox
-    Friend WithEvents Label9 As Label
-    Friend WithEvents btnAdd As Button
+    Friend WithEvents btnClear As Button
+    Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents fpicture As PictureBox
-    Friend WithEvents sp As IO.Ports.SerialPort
-    Friend WithEvents lblClear As Label
 End Class

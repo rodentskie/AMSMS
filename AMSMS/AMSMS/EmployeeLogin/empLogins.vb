@@ -1,17 +1,18 @@
-﻿Public Class employees
+﻿Public Class empLogins
     Private q As New queries
     Private p As New dgvPaging
     Private dtSource As DataTable
     Public Property id As String                'need when dgv is click store ID
+    Public Property username As String
 
     Dim bool As Boolean = False                  'not show data on load
 
-    Private Sub employees_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub empLogins_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cbxPagesize.SelectedIndex = 2
         lblError.Text = ""
     End Sub
 
-    Private Sub employees_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
+    Private Sub empLogins_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
         Me.CenterToScreen()
     End Sub
 
@@ -61,6 +62,7 @@
         Else
             If dgvData.SelectedRows.Count > 0 Then
                 id = dgvData.CurrentRow.Cells(0).Value
+                username = dgvData.CurrentRow.Cells(2).Value
             End If
         End If
     End Sub
@@ -70,9 +72,8 @@
         loads()
     End Sub
 
-
     Public Sub loads()
-        q.employeesLoadDgv(dgvData, txtFilter.Text)
+        q.empLoginLoadDgv(dgvData, txtFilter.Text)
 
         dgvData.ClearSelection()
         id = ""
@@ -107,14 +108,15 @@
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         mainform.Enabled = False
         Me.Enabled = False
-        employeeAdd.Show()
+        empLoginAdd.Show()
     End Sub
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If id <> "" Then
             mainform.Enabled = False
             Me.Enabled = False
-            employeeUpdate.Show()
+            empLoginUpdate.Show()
         End If
     End Sub
+
 End Class

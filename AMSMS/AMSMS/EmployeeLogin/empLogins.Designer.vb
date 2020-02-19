@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class employees
+Partial Class empLogins
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -94,7 +94,7 @@ Partial Class employees
         Me.Panel1.Location = New System.Drawing.Point(11, 66)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1310, 505)
-        Me.Panel1.TabIndex = 195
+        Me.Panel1.TabIndex = 209
         '
         'lblError
         '
@@ -104,7 +104,7 @@ Partial Class employees
         Me.lblError.Location = New System.Drawing.Point(512, 5)
         Me.lblError.Name = "lblError"
         Me.lblError.Size = New System.Drawing.Size(39, 18)
-        Me.lblError.TabIndex = 199
+        Me.lblError.TabIndex = 213
         Me.lblError.Text = "error"
         '
         'Label2
@@ -114,7 +114,7 @@ Partial Class employees
         Me.Label2.Location = New System.Drawing.Point(426, 29)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(83, 18)
-        Me.Label2.TabIndex = 198
+        Me.Label2.TabIndex = 212
         Me.Label2.Text = "Search here :"
         '
         'btnUpdate
@@ -123,7 +123,7 @@ Partial Class employees
         Me.btnUpdate.Location = New System.Drawing.Point(259, 16)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(118, 44)
-        Me.btnUpdate.TabIndex = 188
+        Me.btnUpdate.TabIndex = 202
         Me.btnUpdate.Text = "Update"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
@@ -133,7 +133,7 @@ Partial Class employees
         Me.btnAdd.Location = New System.Drawing.Point(135, 16)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(118, 44)
-        Me.btnAdd.TabIndex = 187
+        Me.btnAdd.TabIndex = 201
         Me.btnAdd.Text = "Add"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
@@ -143,7 +143,7 @@ Partial Class employees
         Me.btnView.Location = New System.Drawing.Point(11, 16)
         Me.btnView.Name = "btnView"
         Me.btnView.Size = New System.Drawing.Size(118, 44)
-        Me.btnView.TabIndex = 186
+        Me.btnView.TabIndex = 200
         Me.btnView.Text = "View"
         Me.btnView.UseVisualStyleBackColor = True
         '
@@ -154,7 +154,7 @@ Partial Class employees
         Me.lblPage.Location = New System.Drawing.Point(1239, 581)
         Me.lblPage.Name = "lblPage"
         Me.lblPage.Size = New System.Drawing.Size(33, 16)
-        Me.lblPage.TabIndex = 197
+        Me.lblPage.TabIndex = 211
         Me.lblPage.Text = "Page"
         '
         'btnNext
@@ -163,7 +163,7 @@ Partial Class employees
         Me.btnNext.Location = New System.Drawing.Point(1055, 577)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(75, 23)
-        Me.btnNext.TabIndex = 193
+        Me.btnNext.TabIndex = 207
         Me.btnNext.Text = "Next"
         Me.btnNext.UseVisualStyleBackColor = True
         '
@@ -173,7 +173,7 @@ Partial Class employees
         Me.btnPrevious.Location = New System.Drawing.Point(960, 577)
         Me.btnPrevious.Name = "btnPrevious"
         Me.btnPrevious.Size = New System.Drawing.Size(75, 23)
-        Me.btnPrevious.TabIndex = 192
+        Me.btnPrevious.TabIndex = 206
         Me.btnPrevious.Text = "Previous"
         Me.btnPrevious.UseVisualStyleBackColor = True
         '
@@ -186,7 +186,7 @@ Partial Class employees
         Me.cbxPagesize.Location = New System.Drawing.Point(793, 578)
         Me.cbxPagesize.Name = "cbxPagesize"
         Me.cbxPagesize.Size = New System.Drawing.Size(70, 24)
-        Me.cbxPagesize.TabIndex = 190
+        Me.cbxPagesize.TabIndex = 204
         '
         'Label1
         '
@@ -195,7 +195,7 @@ Partial Class employees
         Me.Label1.Location = New System.Drawing.Point(717, 581)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(58, 16)
-        Me.Label1.TabIndex = 196
+        Me.Label1.TabIndex = 210
         Me.Label1.Text = "Page Size"
         '
         'btnFirst
@@ -204,7 +204,7 @@ Partial Class employees
         Me.btnFirst.Location = New System.Drawing.Point(879, 577)
         Me.btnFirst.Name = "btnFirst"
         Me.btnFirst.Size = New System.Drawing.Size(75, 23)
-        Me.btnFirst.TabIndex = 191
+        Me.btnFirst.TabIndex = 205
         Me.btnFirst.Text = "First"
         Me.btnFirst.UseVisualStyleBackColor = True
         '
@@ -214,7 +214,7 @@ Partial Class employees
         Me.txtFilter.Location = New System.Drawing.Point(515, 26)
         Me.txtFilter.Name = "txtFilter"
         Me.txtFilter.Size = New System.Drawing.Size(300, 25)
-        Me.txtFilter.TabIndex = 189
+        Me.txtFilter.TabIndex = 203
         '
         'btnLast
         '
@@ -222,11 +222,11 @@ Partial Class employees
         Me.btnLast.Location = New System.Drawing.Point(1136, 577)
         Me.btnLast.Name = "btnLast"
         Me.btnLast.Size = New System.Drawing.Size(75, 23)
-        Me.btnLast.TabIndex = 194
+        Me.btnLast.TabIndex = 208
         Me.btnLast.Text = "Last"
         Me.btnLast.UseVisualStyleBackColor = True
         '
-        'employees
+        'empLogins
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -249,9 +249,9 @@ Partial Class employees
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "employees"
+        Me.Name = "empLogins"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Manage Employees"
+        Me.Text = "Employee Accounts"
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)

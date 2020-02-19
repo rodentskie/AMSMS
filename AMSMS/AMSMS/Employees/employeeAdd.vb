@@ -1,4 +1,5 @@
-﻿Imports AxZKFPEngXControl
+﻿Imports System.IO.Ports
+Imports AxZKFPEngXControl
 Public Class employeeAdd
     Private q As New queries
     Dim bool As Boolean = False         'check if has add or not
@@ -11,8 +12,8 @@ Public Class employeeAdd
     Private f As New functions
 
     '#for comport
-    Dim portArray As New ArrayList
     Dim comPort As String = ""
+    Delegate Sub SetTextCallback(ByVal [text] As String) 'Added to prevent threading errors during receiveing of data
 
     Private Sub employeeAdd_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mainform.Enabled = True
@@ -23,6 +24,10 @@ Public Class employeeAdd
         If bool = True Then
             'if user has added account; reload view
             employees.loads()
+        End If
+
+        If sp.IsOpen = True Then
+            sp.Close()
         End If
     End Sub
 
@@ -43,9 +48,11 @@ Public Class employeeAdd
         getComPort()
 
         'receive employee ID from serial port RFID reader
+        initPort()
     End Sub
 
     Sub getComPort()
+        Dim portArray As New ArrayList
         portArray = q.getSerialPorts()
 
         'absolutely one com port on this device only
@@ -54,6 +61,19 @@ Public Class employeeAdd
         For Each p As String In portArray
             comPort = p
         Next
+    End Sub
+
+    'init com port
+    Sub initPort()
+        If comPort <> "" Then
+            sp.PortName = comPort
+            sp.BaudRate = 9600
+
+            sp.Parity = IO.Ports.Parity.None
+            sp.StopBits = IO.Ports.StopBits.One
+            sp.DataBits = 8
+            sp.Open()
+        End If
     End Sub
 
     'initialize scanner
@@ -179,4 +199,21 @@ Public Class employeeAdd
         lblGuide.Text = s
     End Sub
 
+    Private Sub sp_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles sp.DataReceived
+        ReceivedText(sp.ReadExisting())
+    End Sub
+
+    Private Sub ReceivedText(ByVal [text] As String)
+        'compares the ID of the creating Thread to the ID of the calling Thread
+        If Me.txtId.InvokeRequired Then
+            Dim x As New SetTextCallback(AddressOf ReceivedText)
+            Me.Invoke(x, New Object() {(text)})
+        Else
+            Me.txtId.Text &= [text]
+        End If
+    End Sub
+
+    Private Sub lblClear_Click(sender As Object, e As EventArgs) Handles lblClear.Click
+        txtId.Text = ""
+    End Sub
 End Class
