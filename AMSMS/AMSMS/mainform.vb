@@ -90,4 +90,15 @@
         loginForm.txtUname.Focus()
     End Sub
 
+    Private Sub VaultMonitoringToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VaultMonitoringToolStripMenuItem.Click
+        If Environment.Is64BitOperatingSystem Then
+            closeForms()
+            vaultMonitoring64.MdiParent = Me
+            vaultMonitoring64.Show()
+        Else
+            closeForms()
+            vaultMonitoring.MdiParent = Me
+            vaultMonitoring.Show()
+        End If
+    End Sub
 End Class

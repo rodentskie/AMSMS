@@ -178,6 +178,18 @@
     <Compile Include="Utilities\functions.vb" />
     <Compile Include="Utilities\queries.vb" />
     <Compile Include="Utilities\SQLControl.vb" />
+    <Compile Include="Vaults\vaultMonitoring.Designer.vb">
+      <DependentUpon>vaultMonitoring.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vaults\vaultMonitoring.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vaults\vaultMonitoring64.Designer.vb">
+      <DependentUpon>vaultMonitoring64.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vaults\vaultMonitoring64.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Admin\admin.resx">
@@ -227,6 +239,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Positions\positions.resx">
       <DependentUpon>positions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vaults\vaultMonitoring.resx">
+      <DependentUpon>vaultMonitoring.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vaults\vaultMonitoring64.resx">
+      <DependentUpon>vaultMonitoring64.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

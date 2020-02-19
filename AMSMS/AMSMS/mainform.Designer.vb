@@ -29,13 +29,14 @@ Partial Class mainform
         Me.ManageEmployeesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManagePositionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManagePositionsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VaultMonitoringToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.msMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'msMain
         '
         Me.msMain.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.EmployeesToolStripMenuItem})
+        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.EmployeesToolStripMenuItem, Me.VaultMonitoringToolStripMenuItem})
         Me.msMain.Location = New System.Drawing.Point(0, 0)
         Me.msMain.Name = "msMain"
         Me.msMain.Size = New System.Drawing.Size(736, 26)
@@ -80,6 +81,12 @@ Partial Class mainform
         Me.ManagePositionsToolStripMenuItem1.Size = New System.Drawing.Size(196, 22)
         Me.ManagePositionsToolStripMenuItem1.Text = "Manage Positions"
         '
+        'VaultMonitoringToolStripMenuItem
+        '
+        Me.VaultMonitoringToolStripMenuItem.Name = "VaultMonitoringToolStripMenuItem"
+        Me.VaultMonitoringToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
+        Me.VaultMonitoringToolStripMenuItem.Text = "Vault Monitoring"
+        '
         'mainform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -109,4 +116,5 @@ Partial Class mainform
     Friend WithEvents ManageEmployeesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ManagePositionsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ManagePositionsToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents VaultMonitoringToolStripMenuItem As ToolStripMenuItem
 End Class
