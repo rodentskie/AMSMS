@@ -1,5 +1,7 @@
-﻿Imports System.IO
-Imports System.Text
+﻿Imports System.IO.Ports
+Imports System.Threading
+Imports AxZKFPEngXControl
+
 Public Class vaultMonitoring64
     Const WM_CAP As Short = &H400S
     Const WM_CAP_DRIVER_CONNECT As Integer = WM_CAP + 10
@@ -26,11 +28,68 @@ Public Class vaultMonitoring64
     Declare Function capGetDriverDescriptionA Lib "avicap32.dll" (ByVal wDriver As Short, ByVal lpszName As String, ByVal cbName As Integer, ByVal lpszVer As String, ByVal cbVer As Integer) As Boolean
 
     Private f As New functions
+    Private q As New queries
+
+    '914, 597
+
     Dim ip = f.GetIPv4Address()
 
     Dim filepath As String = "\\" & ip & "\vault\"
 
-    '700, 597
+    '#for comport
+    Dim comPort As String = ""
+    Delegate Sub SetTextCallback(ByVal [text] As String) 'Added to prevent threading errors during receiveing of data
+    Dim WithEvents ZkFprint As New AxZKFPEngX
+
+    Dim template As String = "" 'store template from db
+
+    '#for com port and finger scanner
+    Sub getComPort()
+        Dim portArray As New ArrayList
+        portArray = q.getSerialPorts()
+
+        'absolutely one com port on this device only
+        'if multiple com port; it may not work properly
+
+        For Each p As String In portArray
+            comPort = p
+        Next
+    End Sub
+
+    'init com port
+    Sub initPort()
+        If comPort <> "" Then
+            sp.PortName = comPort
+            sp.BaudRate = 9600
+
+            sp.Parity = IO.Ports.Parity.None
+            sp.StopBits = IO.Ports.StopBits.One
+            sp.DataBits = 8
+            sp.Open()
+        End If
+    End Sub
+
+    'initialize scanner
+    Private Sub InitialAxZkfp()
+        Try
+            Controls.Add(ZkFprint)
+            If (ZkFprint.InitEngine = 0) Then
+                ZkFprint.FPEngineVersion = "9"
+                ZkFprint.EnrollCount = 0
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Finger print scanner not detected.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
+
+    'begin enroll
+    Sub beginEnroll()
+        ZkFprint.CancelEnroll()
+        ZkFprint.EnrollCount = 0
+        ZkFprint.BeginEnroll()
+    End Sub
+
+    '# end comport and scanner
 
     Private Sub LoadDeviceList()
         Dim strName As String = Space(100)
@@ -63,10 +122,31 @@ Public Class vaultMonitoring64
         DestroyWindow(hHwnd)
     End Sub
 
+    'receive text from serial port
+    Private Sub ReceivedText(ByVal [text] As String)
+        If Me.txtId.InvokeRequired Then
+            Dim x As New SetTextCallback(AddressOf ReceivedText)
+            Me.Invoke(x, New Object() {(text)})
+        Else
+            'clear first
+            Me.txtId.Text = ""
+            f.Delay(0.1)
+            Me.txtId.Text &= [text]
+        End If
+    End Sub
+
     Private Sub vaultMonitoring64_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadDeviceList()
 
         openCamera()
+
+        InitialAxZkfp()
+        beginEnroll()
+
+        'get comport
+        getComPort()
+
+        initPort()
     End Sub
 
     Private Sub vaultMonitoring64_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
@@ -107,6 +187,43 @@ Public Class vaultMonitoring64
 
     Private Sub vaultMonitoring64_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         stopCamera()
+
+        If sp.IsOpen = True Then
+            sp.Close()
+        End If
+    End Sub
+
+    Private Sub sp_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles sp.DataReceived
+        ReceivedText(sp.ReadLine())
+
+        template = "" 'clear
+        template = q.returnTemplate(txtId.Text)
+
+        If template = "" Then
+
+        End If
+
+    End Sub
+
+    Private Sub ZkFprint_OnCapture(sender As Object, e As IZKFPEngXEvents_OnCaptureEvent) Handles ZkFprint.OnCapture
+        Dim RegChanged As Boolean = False
+        Dim sTemp As String = ZkFprint.GetTemplateAsString()
+
+        If ZkFprint.VerFingerFromStr(template, sTemp, False, RegChanged) Then
+            MsgBox("succeed")
+        Else
+            MsgBox("fail")
+        End If
+    End Sub
+
+    Private Sub ZkFprint_OnImageReceived(sender As Object, e As IZKFPEngXEvents_OnImageReceivedEvent) Handles ZkFprint.OnImageReceived
+        Dim g As Graphics = fpicture.CreateGraphics
+        Dim bmp As Bitmap = New Bitmap(fpicture.Width, fpicture.Height)
+        g = Graphics.FromImage(bmp)
+        Dim dc As Integer = g.GetHdc.ToInt32
+        ZkFprint.PrintImageAt(dc, 0, 0, bmp.Width, bmp.Height)
+        g.Dispose()
+        fpicture.Image = bmp
     End Sub
 
 End Class

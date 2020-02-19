@@ -1,5 +1,6 @@
 ﻿Imports System.IO.Ports
 Imports AxZKFPEngXControl
+
 Public Class employeeAdd
     Private q As New queries
     Dim bool As Boolean = False         'check if has add or not
@@ -47,7 +48,6 @@ Public Class employeeAdd
         'get comport
         getComPort()
 
-        'receive employee ID from serial port RFID reader
         initPort()
     End Sub
 

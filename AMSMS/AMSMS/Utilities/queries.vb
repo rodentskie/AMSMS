@@ -138,6 +138,25 @@
         Return bool
     End Function
 
+    'get template from RFID scan
+    Public Function returnTemplate(rfid As String)
+        Dim temp As String = ""
+        Dim id As String = rfid.Trim
+
+        SQL.AddParam("@id", id)
+        SQL.ExecQueryDT("SELECT template FROM employees WHERE employee_id = @id;")
+        If SQL.HasException(True) Then Return Nothing
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                If Not IsDBNull(r(0)) Then
+                    temp = r(0)
+                End If
+            Next
+        End If
+
+        Return temp
+    End Function
+
     '## positions
     'display positions
 
