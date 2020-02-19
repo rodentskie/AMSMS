@@ -101,4 +101,17 @@
             'vaultMonitoring.Show()
         End If
     End Sub
+
+    Private Sub SetCutOffToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetCutOffToolStripMenuItem.Click
+        closeForms()
+        attendanceCutOff.MdiParent = Me
+        attendanceCutOff.Show()
+    End Sub
+
+    Private Sub MonitoringToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MonitoringToolStripMenuItem.Click
+        closeForms()
+        attendance.MdiParent = Me
+        attendance.Show()
+    End Sub
+
 End Class

@@ -30,13 +30,16 @@ Partial Class mainform
         Me.ManagePositionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManagePositionsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.VaultMonitoringToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SetCutOffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MonitoringToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.msMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'msMain
         '
         Me.msMain.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.EmployeesToolStripMenuItem, Me.VaultMonitoringToolStripMenuItem})
+        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.EmployeesToolStripMenuItem, Me.VaultMonitoringToolStripMenuItem, Me.AttendanceToolStripMenuItem})
         Me.msMain.Location = New System.Drawing.Point(0, 0)
         Me.msMain.Name = "msMain"
         Me.msMain.Size = New System.Drawing.Size(736, 26)
@@ -87,6 +90,25 @@ Partial Class mainform
         Me.VaultMonitoringToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
         Me.VaultMonitoringToolStripMenuItem.Text = "Vault Monitoring"
         '
+        'AttendanceToolStripMenuItem
+        '
+        Me.AttendanceToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SetCutOffToolStripMenuItem, Me.MonitoringToolStripMenuItem})
+        Me.AttendanceToolStripMenuItem.Name = "AttendanceToolStripMenuItem"
+        Me.AttendanceToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.AttendanceToolStripMenuItem.Text = "Attendance"
+        '
+        'SetCutOffToolStripMenuItem
+        '
+        Me.SetCutOffToolStripMenuItem.Name = "SetCutOffToolStripMenuItem"
+        Me.SetCutOffToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SetCutOffToolStripMenuItem.Text = "Set Cut Off"
+        '
+        'MonitoringToolStripMenuItem
+        '
+        Me.MonitoringToolStripMenuItem.Name = "MonitoringToolStripMenuItem"
+        Me.MonitoringToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.MonitoringToolStripMenuItem.Text = "Monitoring"
+        '
         'mainform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -117,4 +139,7 @@ Partial Class mainform
     Friend WithEvents ManagePositionsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ManagePositionsToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents VaultMonitoringToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AttendanceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SetCutOffToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MonitoringToolStripMenuItem As ToolStripMenuItem
 End Class

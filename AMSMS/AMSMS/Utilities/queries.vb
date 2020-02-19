@@ -634,4 +634,181 @@
         Return list
     End Function
 
+    '## attendance
+
+    'set attendance cut off
+    Public Sub attendanceSet()
+        SQL.ExecQueryDT("SELECT * FROM cut_offs;")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            'update
+            Dim id As Integer = 0
+            For Each r As DataRow In SQL.DBDT.Rows
+                If Not IsDBNull(r(0)) Then
+                    id = r(0)
+                End If
+            Next
+
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@inAM", attendanceCutOff.dtpinAM.Value)
+            SQL.AddParam("@break", attendanceCutOff.dtpLunchBreak.Value)
+            SQL.AddParam("@inPM", attendanceCutOff.dtpinPM.Value)
+            SQL.AddParam("@outPM", attendanceCutOff.dtpOutPM.Value)
+
+            SQL.ExecQueryDT("
+                UPDATE cut_offs SET morning_in=@inAM, lunch_break=@break, afternoon_in=@inPM,
+                afternoon_out=@outPM WHERE id=@id;
+            ")
+            If SQL.HasException(True) Then Exit Sub
+            MessageBox.Show("Updated successfully.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        Else
+            'insert
+            SQL.AddParam("@inAM", attendanceCutOff.dtpinAM.Value)
+            SQL.AddParam("@break", attendanceCutOff.dtpLunchBreak.Value)
+            SQL.AddParam("@inPM", attendanceCutOff.dtpinPM.Value)
+            SQL.AddParam("@outPM", attendanceCutOff.dtpOutPM.Value)
+
+            SQL.ExecQueryDT("INSERT INTO cut_offs VALUES (@inAM,@break,@inPM,@outPM);")
+            If SQL.HasException(True) Then Exit Sub
+            MessageBox.Show("Added successfully.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+    End Sub
+
+    'fetch existing cut off
+    Public Sub attendanceFetchCutOff()
+        SQL.ExecQueryDT("SELECT * FROM cut_offs;")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                If Not IsDBNull(r(1)) Then
+                    attendanceCutOff.dtpinAM.Text = r(1).ToString()
+                End If
+                If Not IsDBNull(r(2)) Then
+                    attendanceCutOff.dtpLunchBreak.Text = r(2).ToString()
+                End If
+                If Not IsDBNull(r(3)) Then
+                    attendanceCutOff.dtpinPM.Text = r(3).ToString()
+                End If
+                If Not IsDBNull(r(4)) Then
+                    attendanceCutOff.dtpOutPM.Text = r(4).ToString()
+                End If
+            Next
+        End If
+    End Sub
+
+    'load afternoon view
+    Public Sub attendanceDGVAfternoon(dgv As DataGridView)
+        SQL.ExecQueryDT("
+            SELECT c.employee_id,CONCAT(c.lname,', ',c.fname) name,a.date,
+            CONVERT(varchar(15),a.time_in,100) inAM,
+            CONVERT(varchar(15),a.time_out,100) outAM,
+            CONVERT(varchar(15),b.time_in,100) inPM,
+            CONVERT(varchar(15),b.time_out,100) outPM,b.elapsed_time
+            FROM attendance_in a
+            LEFT JOIN attendance_out b ON b.attendance_in_id = a.id
+            LEFT JOIN employees c ON c.employee_id = a.employee_id;
+        ")
+        If SQL.HasException(True) Then Exit Sub
+        dgv.AllowUserToResizeColumns = False
+        dgv.AllowUserToResizeRows = False
+        dgv.AllowUserToAddRows = False
+        dgv.DataSource = SQL.DBDT
+        dgv.ClearSelection()
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        '##########
+        'dgv.Columns(0).Visible = False
+        dgv.Columns(0).HeaderText = "EMPLOYEE ID"
+        dgv.Columns(1).HeaderText = "NAME"
+        dgv.Columns(2).HeaderText = "DATE"
+        dgv.Columns(3).HeaderText = "MORNING IN"
+        dgv.Columns(4).HeaderText = "LUNCH BREAK"
+        dgv.Columns(5).HeaderText = "AFTERNOON IN"
+        dgv.Columns(6).HeaderText = "AFTERNOON OUT"
+        dgv.Columns(7).HeaderText = "ELAPSED"
+        dgv.Columns(2).DefaultCellStyle.Format = "MM/dd/yyy"
+        dgv.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(1).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(2).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(3).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(4).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(5).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(6).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(7).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.RowTemplate.Height = 30
+    End Sub
+
+    'load morning view
+    Public Sub attendanceDGVMorning(dgv As DataGridView)
+        SQL.ExecQueryDT("
+            SELECT c.employee_id,CONCAT(c.lname,', ',c.fname) name,a.date,
+            CONVERT(varchar(15),a.time_in,100) inAM,
+            CONVERT(varchar(15),a.time_out,100) outAM,
+            CONVERT(varchar(15),b.time_in,100) inPM,
+            CONVERT(varchar(15),b.time_out,100) outPM,b.elapsed_time
+            FROM attendance_in a
+            LEFT JOIN attendance_out b ON b.attendance_in_id = a.id
+            LEFT JOIN employees c ON c.employee_id = a.employee_id;
+        ")
+        If SQL.HasException(True) Then Exit Sub
+        dgv.AllowUserToResizeColumns = False
+        dgv.AllowUserToResizeRows = False
+        dgv.AllowUserToAddRows = False
+        dgv.DataSource = SQL.DBDT
+        dgv.ClearSelection()
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        '##########
+        dgv.Columns(5).Visible = False
+        dgv.Columns(6).Visible = False
+        dgv.Columns(7).Visible = False
+        dgv.Columns(0).HeaderText = "EMPLOYEE ID"
+        dgv.Columns(1).HeaderText = "NAME"
+        dgv.Columns(2).HeaderText = "DATE"
+        dgv.Columns(3).HeaderText = "MORNING IN"
+        dgv.Columns(4).HeaderText = "LUNCH BREAK"
+        dgv.Columns(5).HeaderText = "AFTERNOON IN"
+        dgv.Columns(6).HeaderText = "AFTERNOON OUT"
+        dgv.Columns(7).HeaderText = "ELAPSED"
+        dgv.Columns(2).DefaultCellStyle.Format = "MM/dd/yyy"
+        dgv.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(1).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(2).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(3).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(4).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(5).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(6).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(7).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.RowTemplate.Height = 30
+    End Sub
+
+    'display cut off time to attendance monitoring
+    Public Sub attendanceDisplayCutOff()
+        SQL.ExecQueryDT("
+            SELECT id,
+            CONVERT(varchar(15),morning_in,100) morning_in,
+            CONVERT(varchar(15),lunch_break,100) lunch_break,
+            CONVERT(varchar(15),afternoon_in,100) afternoon_in,
+            CONVERT(varchar(15),afternoon_out,100) afternoon_out
+            FROM cut_offs;
+        ")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                If Not IsDBNull(r(1)) Then
+                    attendance.lblin.Text = r(1).ToString()
+                End If
+                If Not IsDBNull(r(2)) Then
+                    attendance.lblbreak.Text = r(2).ToString()
+                End If
+                If Not IsDBNull(r(3)) Then
+                    attendance.lblinPM.Text = r(3).ToString()
+                End If
+                If Not IsDBNull(r(4)) Then
+                    attendance.lblOut.Text = r(4).ToString()
+                End If
+            Next
+        End If
+    End Sub
+
 End Class

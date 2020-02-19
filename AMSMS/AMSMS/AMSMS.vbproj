@@ -93,6 +93,18 @@
     <Compile Include="Admin\adminEdit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Attendance\attendance.Designer.vb">
+      <DependentUpon>attendance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Attendance\attendance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Attendance\attendanceCutOff.Designer.vb">
+      <DependentUpon>attendanceCutOff.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Attendance\attendanceCutOff.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EmployeeLogin\empLoginAdd.Designer.vb">
       <DependentUpon>empLoginAdd.vb</DependentUpon>
     </Compile>
@@ -194,6 +206,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\adminEdit.resx">
       <DependentUpon>adminEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attendance\attendance.resx">
+      <DependentUpon>attendance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Attendance\attendanceCutOff.resx">
+      <DependentUpon>attendanceCutOff.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeLogin\empLoginAdd.resx">
       <DependentUpon>empLoginAdd.vb</DependentUpon>

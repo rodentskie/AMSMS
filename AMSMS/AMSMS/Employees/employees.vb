@@ -6,6 +6,8 @@
 
     Dim bool As Boolean = False                  'not show data on load
 
+    ' 1348, 645
+
     Private Sub employees_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cbxPagesize.SelectedIndex = 2
         lblError.Text = ""
