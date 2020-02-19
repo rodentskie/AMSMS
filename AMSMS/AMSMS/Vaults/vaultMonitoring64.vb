@@ -26,7 +26,9 @@ Public Class vaultMonitoring64
     Declare Function capGetDriverDescriptionA Lib "avicap32.dll" (ByVal wDriver As Short, ByVal lpszName As String, ByVal cbName As Integer, ByVal lpszVer As String, ByVal cbVer As Integer) As Boolean
 
     Private f As New functions
-    Dim filepath As String = "\\127.0.0.1\vault\"
+    Dim ip = f.GetIPv4Address()
+
+    Dim filepath As String = "\\" & ip & "\vault\"
 
     '700, 597
 
@@ -98,8 +100,12 @@ Public Class vaultMonitoring64
 
         f.Delay(0.5)
 
-        Dim name = DateTime.Now.ToString("yyyy-MM-dd hhmm tt")
-        pbTest.Image.Save(filepath & name & ".jpg")
+        Try
+            Dim name = DateTime.Now.ToString("yyyy-MM-dd hhmm tt")
+            pbTest.Image.Save(filepath & name & ".jpg")
+        Catch ex As Exception
+            MessageBox.Show("Error saving image: " & vbNewLine & ex.Message)
+        End Try
     End Sub
 
     Sub saveVidToImage()
