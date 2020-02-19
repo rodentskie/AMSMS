@@ -335,7 +335,8 @@
             Exit Sub
         End If
 
-        SQL.AddParam("@id", employeeAdd.txtId.Text)
+        Dim id = employeeAdd.txtId.Text
+        SQL.AddParam("@id", id.Trim)
         SQL.AddParam("@fn", employeeAdd.txtFn.Text)
         SQL.AddParam("@mn", employeeAdd.txtMn.Text)
         SQL.AddParam("@ln", employeeAdd.txtLn.Text)
@@ -708,7 +709,7 @@
             CONVERT(varchar(15),b.time_out,100) outPM,b.elapsed_time
             FROM attendance_in a
             LEFT JOIN attendance_out b ON b.attendance_in_id = a.id
-            LEFT JOIN employees c ON c.employee_id = a.employee_id;
+            LEFT JOIN employees c ON c.employee_id = a.employee_id ORDER BY a.updated_at DESC;
         ")
         If SQL.HasException(True) Then Exit Sub
         dgv.AllowUserToResizeColumns = False
@@ -718,7 +719,7 @@
         dgv.ClearSelection()
         dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         '##########
-        'dgv.Columns(0).Visible = False
+        dgv.Columns(7).Visible = False
         dgv.Columns(0).HeaderText = "EMPLOYEE ID"
         dgv.Columns(1).HeaderText = "NAME"
         dgv.Columns(2).HeaderText = "DATE"
@@ -810,5 +811,254 @@
             Next
         End If
     End Sub
+
+    'time in earlier than cut off
+    Public Sub attendanceInEarly(id As String, time As DateTime, inAM As DateTime)
+        Dim dates = time.ToString("yyy-MM-dd")
+        Dim now = time.ToString("HH:mm:ss")
+        Dim credited = inAM.ToString("HH:mm:ss")
+
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@date", dates)
+        SQL.ExecQueryDT("SELECT * FROM attendance_in WHERE date = @date AND employee_id = @id;")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            'already time in; do nothing
+        Else
+            'time in
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@date", dates)
+            SQL.AddParam("@now", now)
+            SQL.AddParam("@credit", credited)
+            SQL.ExecQueryDT("
+                INSERT INTO attendance_in (employee_id,time_in,date,credited_time_in,updated_at)
+                VALUES (@id,@now,@date,@credit,GETDATE());
+            ")
+            If SQL.HasException(True) Then Exit Sub
+        End If
+    End Sub
+
+    'time in actual time
+    Public Sub attendanceTimeInActual(id As String, time As DateTime)
+        Dim dates = time.ToString("yyy-MM-dd")
+        Dim now = time.ToString("HH:mm:ss")
+
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@date", dates)
+        SQL.ExecQueryDT("SELECT * FROM attendance_in WHERE date = @date AND employee_id = @id;")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            'already time in; do nothing
+        Else
+            'time in
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@date", dates)
+            SQL.AddParam("@now", now)
+            SQL.AddParam("@credit", now)
+            SQL.ExecQueryDT("
+                INSERT INTO attendance_in (employee_id,time_in,date,credited_time_in,updated_at)
+                VALUES (@id,@now,@date,@credit,GETDATE());
+            ")
+            If SQL.HasException(True) Then Exit Sub
+        End If
+    End Sub
+
+    'time lunch; actual lunch time; lucnh break or half day falls here
+    Public Sub attendanceLunchScan(id As String, time As DateTime)
+        Dim dates = time.ToString("yyy-MM-dd")
+        Dim now = time.ToString("HH:mm:ss")
+
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@date", dates)
+        SQL.ExecQueryDT("SELECT * FROM attendance_in WHERE date = @date AND employee_id = @id;")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                'lunch break; only without time out record
+                If IsDBNull(r(3)) Then
+                    Dim timeIn_id = r(0)
+
+                    SQL.AddParam("@id", timeIn_id)
+                    SQL.ExecQueryDT("SELECT * FROM attendance_out WHERE attendance_in_id = @id;")
+                    If SQL.HasException(True) Then Exit Sub
+                    If SQL.RecordCountDT > 0 Then
+                        'there is a time out record; do nothing
+                    Else
+                        'update lunch out
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.AddParam("@now", now)
+                        SQL.ExecQueryDT("UPDATE attendance_in SET time_out=@now,updated_at=GETDATE() WHERE id=@id;")
+                        If SQL.HasException(True) Then Exit Sub
+                    End If
+                End If
+            Next
+        Else
+            'if null; meaning no time in in morning; half day
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@date", dates)
+            SQL.ExecQueryDT("
+                        INSERT INTO attendance_in (employee_id,date,updated_at)
+                        VALUES (@id,@date,GETDATE());
+                    ")
+            If SQL.HasException(True) Then Exit Sub
+
+            'get id of attendance_in;
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@date", dates)
+            SQL.ExecQueryDT("
+                        SELECT * FROM attendance_in WHERE employee_id = @id
+                        AND date = @date ORDER BY id DESC;
+                    ")
+            If SQL.HasException(True) Then Exit Sub
+            If SQL.RecordCountDT > 0 Then
+                For Each s As DataRow In SQL.DBDT.Rows
+                    If Not IsDBNull(s(0)) Then
+                        Dim timeIn_id = s(0)
+
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.AddParam("@now", now)
+                        SQL.ExecQueryDT("
+                                    INSERT INTO attendance_out (attendance_in_id,time_in)
+                                    VALUES(@id,@now);
+                                ")
+                        If SQL.HasException(True) Then Exit Sub
+                    End If
+                Next
+            End If
+        End If
+    End Sub
+
+    'attendance exceed lunch out and half day
+    Public Sub attendanceExceedAndHalf(id As String, time As DateTime, lunch As DateTime)
+        Dim dates = time.ToString("yyy-MM-dd")
+        Dim now = time.ToString("HH:mm:ss")
+        Dim break = lunch.ToString("HH:mm:ss")
+
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@date", dates)
+        SQL.ExecQueryDT("SELECT * FROM attendance_in WHERE date = @date AND employee_id = @id;")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                'lunch break; exceed time out
+                If IsDBNull(r(3)) Then
+                    Dim timeIn_id = r(0)
+                    SQL.AddParam("@id", timeIn_id)
+                    SQL.ExecQueryDT("SELECT * FROM attendance_out WHERE attendance_in_id = @id;")
+                    If SQL.HasException(True) Then Exit Sub
+                    If SQL.RecordCountDT > 0 Then
+                        'update timeout
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.AddParam("@now", now)
+                        SQL.ExecQueryDT("UPDATE attendance_out SET time_out=@now WHERE attendance_in_id=@id AND time_out IS NULL;")
+                        If SQL.HasException(True) Then Exit Sub
+
+                        'to display in latest
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.ExecQueryDT("UPDATE attendance_in SET updated_at=GETDATE() WHERE id=@id;")
+                        If SQL.HasException(True) Then Exit Sub
+                    Else
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.AddParam("@break", break)
+                        SQL.ExecQueryDT("UPDATE attendance_in SET time_out=@break,updated_at=GETDATE() WHERE id=@id;")
+                        If SQL.HasException(True) Then Exit Sub
+
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.AddParam("@now", now)
+                        SQL.ExecQueryDT("
+                                    INSERT INTO attendance_out (attendance_in_id,time_in)
+                                    VALUES(@id,@now);
+                                ")
+                        If SQL.HasException(True) Then Exit Sub
+                    End If
+                Else
+                    Dim timeIn_id = r(0)
+                    SQL.AddParam("@id", timeIn_id)
+                    SQL.ExecQueryDT("SELECT * FROM attendance_out WHERE attendance_in_id = @id;")
+                    If SQL.HasException(True) Then Exit Sub
+                    If SQL.RecordCountDT > 0 Then
+                        'means has time out; early out
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.AddParam("@now", now)
+                        SQL.ExecQueryDT("UPDATE attendance_out SET time_out=@now WHERE attendance_in_id=@id AND time_out IS NULL;")
+                        If SQL.HasException(True) Then Exit Sub
+
+                        'to display in latest
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.ExecQueryDT("UPDATE attendance_in SET updated_at=GETDATE() WHERE id=@id;")
+                        If SQL.HasException(True) Then Exit Sub
+                    Else
+                        'time in afternoon
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.AddParam("@now", now)
+                        SQL.ExecQueryDT("
+                                    INSERT INTO attendance_out (attendance_in_id,time_in)
+                                    VALUES(@id,@now);
+                                ")
+                        If SQL.HasException(True) Then Exit Sub
+                    End If
+                End If
+            Next
+        Else
+            'if null; meaning no time in in morning; half day
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@date", dates)
+            SQL.ExecQueryDT("
+                        INSERT INTO attendance_in (employee_id,date,updated_at)
+                        VALUES (@id,@date,GETDATE());
+                    ")
+            If SQL.HasException(True) Then Exit Sub
+
+            'get id of attendance_in;
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@date", dates)
+            SQL.ExecQueryDT("
+                        SELECT * FROM attendance_in WHERE employee_id = @id
+                        AND date = @date ORDER BY id DESC;
+                    ")
+            If SQL.HasException(True) Then Exit Sub
+            If SQL.RecordCountDT > 0 Then
+                For Each s As DataRow In SQL.DBDT.Rows
+                    If Not IsDBNull(s(0)) Then
+                        Dim timeIn_id = s(0)
+
+                        SQL.AddParam("@id", timeIn_id)
+                        SQL.AddParam("@now", now)
+                        SQL.ExecQueryDT("
+                                    INSERT INTO attendance_out (attendance_in_id,time_in)
+                                    VALUES(@id,@now);
+                                ")
+                        If SQL.HasException(True) Then Exit Sub
+                    End If
+                Next
+            End If
+        End If
+    End Sub
+
+    'simple time out
+    Public Sub attendanceScanOut(id As String, time As DateTime)
+        Dim dates = time.ToString("yyy-MM-dd")
+        Dim now = time.ToString("HH:mm:ss")
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@date", dates)
+        SQL.ExecQueryDT("SELECT * FROM attendance_in WHERE date = @date AND employee_id = @id;")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                Dim timeIn_id = r(0)
+
+                SQL.AddParam("@id", timeIn_id)
+                SQL.AddParam("@now", now)
+                SQL.ExecQueryDT("UPDATE attendance_out SET time_out=@now WHERE attendance_in_id=@id AND time_out IS NULL;")
+                If SQL.HasException(True) Then Exit Sub
+
+                'to display in latest
+                SQL.AddParam("@id", timeIn_id)
+                SQL.ExecQueryDT("UPDATE attendance_in SET updated_at=GETDATE() WHERE id=@id;")
+                If SQL.HasException(True) Then Exit Sub
+            Next
+        End If
+    End Sub
+
 
 End Class

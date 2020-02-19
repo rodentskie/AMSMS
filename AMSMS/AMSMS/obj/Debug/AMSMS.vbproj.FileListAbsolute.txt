@@ -23,6 +23,8 @@ D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\bin\Debug\stdole.dll
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.admin.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.adminAdd.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.adminEdit.resources
+D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.attendance.resources
+D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.attendanceCutOff.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.empLoginAdd.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.empLogins.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.empLoginUpdate.resources
@@ -40,6 +42,3 @@ D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.vbproj.Gen
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.exe
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.xml
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.pdb
-D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.vbprojResolveAssemblyReference.cache
-D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.attendance.resources
-D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.attendanceCutOff.resources

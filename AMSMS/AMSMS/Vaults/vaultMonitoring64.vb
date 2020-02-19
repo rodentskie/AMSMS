@@ -210,7 +210,7 @@ Public Class vaultMonitoring64
         Dim sTemp As String = ZkFprint.GetTemplateAsString()
 
         If ZkFprint.VerFingerFromStr(template, sTemp, False, RegChanged) Then
-            MsgBox("succeed")
+            saveImage()
         Else
             MsgBox("fail")
         End If

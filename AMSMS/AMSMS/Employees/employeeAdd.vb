@@ -200,7 +200,7 @@ Public Class employeeAdd
     End Sub
 
     Private Sub sp_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles sp.DataReceived
-        ReceivedText(sp.ReadExisting())
+        ReceivedText(sp.ReadLine())
     End Sub
 
     Private Sub ReceivedText(ByVal [text] As String)

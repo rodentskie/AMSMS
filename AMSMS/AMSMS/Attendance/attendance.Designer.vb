@@ -22,22 +22,25 @@ Partial Class attendance
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.dgvData = New System.Windows.Forms.DataGridView()
         Me.txtId = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.lblin = New System.Windows.Forms.Label()
-        Me.lblbreak = New System.Windows.Forms.Label()
-        Me.lblinPM = New System.Windows.Forms.Label()
-        Me.lblOut = New System.Windows.Forms.Label()
         Me.lblTime = New System.Windows.Forms.Label()
+        Me.lblOut = New System.Windows.Forms.Label()
+        Me.lblinPM = New System.Windows.Forms.Label()
+        Me.lblbreak = New System.Windows.Forms.Label()
+        Me.lblin = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.sp = New System.IO.Ports.SerialPort(Me.components)
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -58,23 +61,23 @@ Partial Class attendance
         Me.dgvData.AllowUserToDeleteRows = False
         Me.dgvData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical
         Me.dgvData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(52, Byte), Integer))
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.Info
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(52, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Info
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvData.ColumnHeadersHeight = 30
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvData.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvData.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvData.Enabled = False
         Me.dgvData.EnableHeadersVisualStyles = False
@@ -82,14 +85,14 @@ Partial Class attendance
         Me.dgvData.Name = "dgvData"
         Me.dgvData.ReadOnly = True
         Me.dgvData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(52, Byte), Integer))
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Info
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvData.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(52, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Info
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvData.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvData.RowHeadersVisible = False
         Me.dgvData.RowTemplate.Height = 30
         Me.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -98,7 +101,7 @@ Partial Class attendance
         '
         'txtId
         '
-        Me.txtId.Location = New System.Drawing.Point(12, 606)
+        Me.txtId.Location = New System.Drawing.Point(47, 606)
         Me.txtId.Name = "txtId"
         Me.txtId.Size = New System.Drawing.Size(225, 20)
         Me.txtId.TabIndex = 197
@@ -122,78 +125,6 @@ Partial Class attendance
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Guide"
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(66, 19)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(52, 15)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "AM - IN:"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(344, 19)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(87, 15)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "LUNCH BREAK:"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(644, 19)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(51, 15)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "PM - IN:"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(905, 19)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(61, 15)
-        Me.Label4.TabIndex = 3
-        Me.Label4.Text = "PM - OUT:"
-        '
-        'lblin
-        '
-        Me.lblin.AutoSize = True
-        Me.lblin.Location = New System.Drawing.Point(124, 19)
-        Me.lblin.Name = "lblin"
-        Me.lblin.Size = New System.Drawing.Size(43, 15)
-        Me.lblin.TabIndex = 4
-        Me.lblin.Text = "Label5"
-        '
-        'lblbreak
-        '
-        Me.lblbreak.AutoSize = True
-        Me.lblbreak.Location = New System.Drawing.Point(437, 19)
-        Me.lblbreak.Name = "lblbreak"
-        Me.lblbreak.Size = New System.Drawing.Size(43, 15)
-        Me.lblbreak.TabIndex = 5
-        Me.lblbreak.Text = "Label5"
-        '
-        'lblinPM
-        '
-        Me.lblinPM.AutoSize = True
-        Me.lblinPM.Location = New System.Drawing.Point(701, 19)
-        Me.lblinPM.Name = "lblinPM"
-        Me.lblinPM.Size = New System.Drawing.Size(43, 15)
-        Me.lblinPM.TabIndex = 6
-        Me.lblinPM.Text = "Label5"
-        '
-        'lblOut
-        '
-        Me.lblOut.AutoSize = True
-        Me.lblOut.Location = New System.Drawing.Point(972, 19)
-        Me.lblOut.Name = "lblOut"
-        Me.lblOut.Size = New System.Drawing.Size(43, 15)
-        Me.lblOut.TabIndex = 7
-        Me.lblOut.Text = "Label5"
-        '
         'lblTime
         '
         Me.lblTime.AutoSize = True
@@ -204,11 +135,97 @@ Partial Class attendance
         Me.lblTime.TabIndex = 8
         Me.lblTime.Text = "Label5"
         '
+        'lblOut
+        '
+        Me.lblOut.AutoSize = True
+        Me.lblOut.Location = New System.Drawing.Point(972, 19)
+        Me.lblOut.Name = "lblOut"
+        Me.lblOut.Size = New System.Drawing.Size(43, 15)
+        Me.lblOut.TabIndex = 7
+        Me.lblOut.Text = "Label5"
+        '
+        'lblinPM
+        '
+        Me.lblinPM.AutoSize = True
+        Me.lblinPM.Location = New System.Drawing.Point(701, 19)
+        Me.lblinPM.Name = "lblinPM"
+        Me.lblinPM.Size = New System.Drawing.Size(43, 15)
+        Me.lblinPM.TabIndex = 6
+        Me.lblinPM.Text = "Label5"
+        '
+        'lblbreak
+        '
+        Me.lblbreak.AutoSize = True
+        Me.lblbreak.Location = New System.Drawing.Point(437, 19)
+        Me.lblbreak.Name = "lblbreak"
+        Me.lblbreak.Size = New System.Drawing.Size(43, 15)
+        Me.lblbreak.TabIndex = 5
+        Me.lblbreak.Text = "Label5"
+        '
+        'lblin
+        '
+        Me.lblin.AutoSize = True
+        Me.lblin.Location = New System.Drawing.Point(124, 19)
+        Me.lblin.Name = "lblin"
+        Me.lblin.Size = New System.Drawing.Size(43, 15)
+        Me.lblin.TabIndex = 4
+        Me.lblin.Text = "Label5"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(905, 19)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(61, 15)
+        Me.Label4.TabIndex = 3
+        Me.Label4.Text = "PM - OUT:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(644, 19)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(51, 15)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "PM - IN:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(344, 19)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(87, 15)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "LUNCH BREAK:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(66, 19)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(52, 15)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "AM - IN:"
+        '
+        'sp
+        '
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(12, 610)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(29, 13)
+        Me.Label5.TabIndex = 199
+        Me.Label5.Text = "Scan"
+        '
         'attendance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1332, 638)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtId)
         Me.Controls.Add(Me.Panel1)
@@ -240,4 +257,6 @@ Partial Class attendance
     Friend WithEvents lblbreak As Label
     Friend WithEvents lblin As Label
     Friend WithEvents lblTime As Label
+    Friend WithEvents sp As IO.Ports.SerialPort
+    Friend WithEvents Label5 As Label
 End Class

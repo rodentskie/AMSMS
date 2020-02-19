@@ -1,8 +1,14 @@
-﻿Public Class attendance
+﻿Imports System.IO.Ports
+
+Public Class attendance
     Private q As New queries
     Private p As New dgvPaging
     Private dtSource As DataTable
+    Private f As New functions
+
     Private WithEvents timers As New Timer
+    Dim comPort As String = ""
+    Delegate Sub SetTextCallback(ByVal [text] As String) 'Added to prevent threading errors during receiveing of data
 
     Private Sub attendance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtId.Select()
@@ -12,9 +18,51 @@
         'fetch cut off time
         q.attendanceDisplayCutOff()
 
-        loadMorning()
+        getComPort()
 
+        lblTime.Text = ""
+        timers.Interval = 1500   'tick every second
         timers.Start()
+
+        initPort()
+    End Sub
+
+    Sub getComPort()
+        Dim portArray As New ArrayList
+        portArray = q.getSerialPorts()
+
+        'absolutely one com port on this device only
+        'if multiple com port; it may not work properly
+
+        For Each p As String In portArray
+            comPort = p
+        Next
+    End Sub
+
+    'init com port
+    Sub initPort()
+        If comPort <> "" Then
+            sp.PortName = comPort
+            sp.BaudRate = 9600
+
+            sp.Parity = IO.Ports.Parity.None
+            sp.StopBits = IO.Ports.StopBits.One
+            sp.DataBits = 8
+            sp.Open()
+        End If
+    End Sub
+
+    'receive text from serial port
+    Private Sub ReceivedText(ByVal [text] As String)
+        If Me.txtId.InvokeRequired Then
+            Dim x As New SetTextCallback(AddressOf ReceivedText)
+            Me.Invoke(x, New Object() {(text)})
+        Else
+            'clear first
+            Me.txtId.Text = ""
+            f.Delay(0.1)
+            Me.txtId.Text &= [text]
+        End If
     End Sub
 
     'load morning
@@ -55,6 +103,60 @@
 
     Private Sub timers_Tick(sender As Object, e As EventArgs) Handles timers.Tick
         lblTime.Text = Format$(Now, "hh:mm:ss tt")
+
+        Dim timenow As DateTime = Convert.ToDateTime(lblTime.Text)
+
+        Dim inAM As DateTime = Convert.ToDateTime(lblin.Text)
+        Dim lunch As DateTime = Convert.ToDateTime(lblbreak.Text)
+        Dim inPM As DateTime = Convert.ToDateTime(lblinPM.Text)
+        Dim out As DateTime = Convert.ToDateTime(lblOut.Text)
+
+        loadAfternoon()
+
+        Dim id = txtId.Text.Trim
+        If id <> "" Then
+            'when earlier than time in in morning; allow scan; credit time is time in cut off
+            If timenow < inAM Then
+                q.attendanceInEarly(id, timenow, inAM)
+                txtId.Text = ""
+            End If
+
+            'time in actual time
+            If timenow > inAM And timenow < lunch Then
+                q.attendanceTimeInActual(id, timenow)
+                txtId.Text = ""
+            End If
+
+            'lunch break; actual lunch break; lunch out or half day falls here
+            If timenow > lunch And timenow < inPM Then
+                q.attendanceLunchScan(id, timenow)
+                txtId.Text = ""
+            End If
+
+            'lunch out greater than time in afternoon; half day too; early out too
+            If timenow > inPM And timenow < out Then
+                q.attendanceExceedAndHalf(id, timenow, lunch)
+                txtId.Text = ""
+            End If
+
+            If timenow > out Then
+                q.attendanceScanOut(id, timenow)
+                txtId.Text = ""
+            End If
+        End If
+
+    End Sub
+
+    Private Sub attendance_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        timers.Stop()
+
+        If sp.IsOpen = True Then
+            sp.Close()
+        End If
+    End Sub
+
+    Private Sub sp_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles sp.DataReceived
+        ReceivedText(sp.ReadLine())
     End Sub
 
 End Class
