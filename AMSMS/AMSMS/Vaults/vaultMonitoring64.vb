@@ -81,20 +81,6 @@ Public Class vaultMonitoring64
         ClosePreviewWindow()
     End Sub
 
-    'generate random string
-    Function generateString()
-        Dim name As String = ""
-        Dim s As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz"
-        Dim r As New Random
-        Dim sb As New StringBuilder
-        For i As Integer = 1 To 12
-            Dim idx As Integer = r.Next(0, 61)
-            sb.Append(s.Substring(idx, 1))
-        Next
-        name = sb.ToString()
-        Return name
-    End Function
-
     Sub saveImage()
         saveVidToImage()
 

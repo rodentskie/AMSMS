@@ -97,8 +97,8 @@
             vaultMonitoring64.Show()
         Else
             closeForms()
-            vaultMonitoring.MdiParent = Me
-            vaultMonitoring.Show()
+            'vaultMonitoring.MdiParent = Me
+            'vaultMonitoring.Show()
         End If
     End Sub
 End Class
