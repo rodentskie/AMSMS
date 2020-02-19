@@ -29,11 +29,13 @@ Partial Class loginForm
         Me.txtUname = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.cbAdmin = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.cbAdmin)
         Me.GroupBox1.Controls.Add(Me.btnLogin)
         Me.GroupBox1.Controls.Add(Me.txtPassword)
         Me.GroupBox1.Controls.Add(Me.Label3)
@@ -48,7 +50,7 @@ Partial Class loginForm
         '
         'btnLogin
         '
-        Me.btnLogin.Location = New System.Drawing.Point(94, 202)
+        Me.btnLogin.Location = New System.Drawing.Point(94, 219)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(75, 23)
         Me.btnLogin.TabIndex = 4
@@ -99,6 +101,16 @@ Partial Class loginForm
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "AMSMS"
         '
+        'cbAdmin
+        '
+        Me.cbAdmin.AutoSize = True
+        Me.cbAdmin.Location = New System.Drawing.Point(19, 194)
+        Me.cbAdmin.Name = "cbAdmin"
+        Me.cbAdmin.Size = New System.Drawing.Size(61, 19)
+        Me.cbAdmin.TabIndex = 5
+        Me.cbAdmin.Text = "Admin"
+        Me.cbAdmin.UseVisualStyleBackColor = True
+        '
         'loginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -127,4 +139,5 @@ Partial Class loginForm
     Friend WithEvents txtUname As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents cbAdmin As CheckBox
 End Class

@@ -33,14 +33,26 @@
             Exit Sub
         End If
 
-        'login query
-        Dim bool = q.adminLogin(txtUname.Text, txtPassword.Text)
+        If cbAdmin.Checked = True Then
+            'if admin login
+            'login query
+            Dim bool = q.adminLogin(txtUname.Text, txtPassword.Text)
 
-        If bool = True Then
-            txtUname.Text = ""
-            txtPassword.Text = ""
-            txtUname.Focus()
+            If bool = True Then
+                txtUname.Text = ""
+                txtPassword.Text = ""
+                txtUname.Focus()
+            End If
+        Else
+            'officer login
+            Dim bool = q.officerLogin(txtUname.Text, txtPassword.Text)
+
+            If bool = True Then
+                txtUname.Text = ""
+                txtPassword.Text = ""
+                txtUname.Focus()
+            End If
         End If
-
     End Sub
+
 End Class

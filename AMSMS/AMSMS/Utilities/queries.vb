@@ -1,7 +1,4 @@
-﻿Imports System.IO
-Imports System.Text.RegularExpressions
-
-Public Class queries
+﻿Public Class queries
     Public SQL As New SQLControl
     Private f As New functions
 
@@ -22,6 +19,35 @@ Public Class queries
 
             If (f.IsFormOpen(loginForm)) Then
                 MessageBox.Show("Login successfully.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                mainform.role = "admin"
+                mainform.Show()
+                loginForm.Close()
+            End If
+        Else
+            'invalid account
+            bool = False
+            MessageBox.Show("Invalid account, please try again.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+        Return bool
+    End Function
+
+    'officer login
+    Public Function officerLogin(username As String, password As String)
+        Dim bool As Boolean = False
+        Dim int As Integer = 0
+
+        SQL.AddParam("@uname", username)
+        SQL.AddParam("@pw", f.GetHash(password))
+
+        SQL.ExecQueryDT("SELECT * FROM officer_logins WHERE username = @uname AND password = @pw;")
+        If SQL.HasException(True) Then Return Nothing
+        If SQL.RecordCountDT > 0 Then
+            'successful login
+            bool = True
+
+            If (f.IsFormOpen(loginForm)) Then
+                MessageBox.Show("Login successfully.", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                mainform.role = "officer"
                 mainform.Show()
                 loginForm.Close()
             End If

@@ -2,11 +2,19 @@
     Private q As New queries
     Public Property id As String = ""
     Public Property user As String = ""
-
+    Public Property role As String = ""
     '#############
 
     Private Sub mainform_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         changebgcolor(Color.SkyBlue)
+        filterView()
+    End Sub
+
+    'filter view depending on login user
+    Sub filterView()
+        If role.ToLower = "officer" Then
+            AdminToolStripMenuItem.Visible = False
+        End If
     End Sub
 
     'change bgcolor
@@ -70,6 +78,16 @@
         closeForms()
         empLogins.MdiParent = Me
         empLogins.Show()
+    End Sub
+
+    Private Sub mainform_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        loginForm.Show()
+        loginForm.Select()
+        loginForm.Focus()
+        loginForm.Focus()
+        loginForm.txtUname.Select()
+        loginForm.txtUname.Focus()
+        loginForm.txtUname.Focus()
     End Sub
 
 End Class
