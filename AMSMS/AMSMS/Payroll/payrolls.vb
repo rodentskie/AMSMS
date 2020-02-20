@@ -3,6 +3,8 @@
 Public Class payrolls
     Private q As New queries
     Private p As New dgvPaging
+    Private f As New functions
+
     Private dtSource As DataTable
     Public Property id As String = ""        'need when dgv is click store ID
     Public Property names As String = ""              'need when dgv is click store name
@@ -172,29 +174,19 @@ Public Class payrolls
 
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
         If printBool = True Then
-            print()
+            loadPrint = False
+
+            f.Delay(0.5)
+            mainform.Enabled = False
+            Me.Enabled = False
+            loadingReport.Show()
         End If
     End Sub
 
     'print payslip
     Public Sub print()
         Try
-            '##declare rpt file
-
-            Dim reportFile = "payroll" ' name of the .rpt file
-            'path
-            Dim strReportPath As String = Application.StartupPath & "\" &
-                    "Reports" & "\" & reportFile & ".rpt"
-            'check if exist
-            If Not IO.File.Exists(strReportPath) Then
-                Throw (New Exception("Unable to locate report file:" & vbCrLf & strReportPath))
-            End If
-            'declare .rpt file to load
-            Dim rpt As New ReportDocument
-
-            rpt.Load(strReportPath)
-
-            '## end declare rpt file
+            Dim rpt As New payroll
             rpt.SetParameterValue("id", id)
             rpt.SetParameterValue("name", names)
             rpt.SetParameterValue("rate", rate)
