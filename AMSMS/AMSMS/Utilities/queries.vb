@@ -314,7 +314,7 @@
     'add employee
     Public Sub employeesAdd()
         'check if employee id exist
-        SQL.AddParam("@id", employeeAdd.txtId.Text)
+        SQL.AddParam("@id", employeeAdd.txtId.Text.Trim)
         SQL.ExecQueryDT("SELECT employee_id FROM employees WHERE LOWER(employee_id) = LOWER(@id);")
         If SQL.HasException(True) Then Exit Sub
         If SQL.RecordCountDT > 0 Then
@@ -1060,5 +1060,142 @@
         End If
     End Sub
 
+    '## payroll
+
+    'load employees dgv
+    Public Sub payrollLoadDgvEmployees(dgv As DataGridView, filter As String)
+        If filter <> "" Then
+            SQL.AddParam("@filter", "%" & filter & "%")
+            SQL.ExecQueryDT("
+                SELECT employee_id, CONCAT(lname,', ',fname) name,gender,contact_num,position_name
+                FROM employees e LEFT JOIN positions p ON p.id = e.position
+                WHERE employee_id LIKE @filter OR CONCAT(lname,', ',fname) LIKE @filter;
+            ")
+        Else
+            SQL.ExecQueryDT("
+               SELECT employee_id, CONCAT(lname,', ',fname) name,gender,contact_num,position_name
+               FROM employees e LEFT JOIN positions p ON p.id = e.position;
+            ")
+        End If
+
+        If SQL.HasException(True) Then Exit Sub
+        dgv.AllowUserToResizeColumns = False
+        dgv.AllowUserToResizeRows = False
+        dgv.AllowUserToAddRows = False
+        dgv.DataSource = SQL.DBDT
+        dgv.ClearSelection()
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        '##########
+        dgv.Columns(2).Visible = False
+        dgv.Columns(3).Visible = False
+        dgv.Columns(4).Visible = False
+        dgv.Columns(0).HeaderText = "EMPLOYEE ID"
+        dgv.Columns(1).HeaderText = "NAME"
+        dgv.Columns(2).HeaderText = "GENDER"
+        dgv.Columns(3).HeaderText = "CONTACT NUMBER"
+        dgv.Columns(4).HeaderText = "POSITION"
+        dgv.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(1).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(2).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(3).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(4).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.RowTemplate.Height = 30
+    End Sub
+
+    'return position rate on chosen employee
+    Public Function payrollReturnRate(id As String)
+        Dim rate As Double = 0
+
+        SQL.AddParam("@id", id)
+        SQL.ExecQueryDT("
+            SELECT p.rate FROM employees e LEFT JOIN positions p
+            ON p.id = e.position WHERE e.employee_id = @id;
+        ")
+        If SQL.HasException(True) Then Return Nothing
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                If Not IsDBNull(r(0)) Then
+                    rate = r(0)
+                End If
+            Next
+        End If
+
+        Return rate
+    End Function
+
+    'get total seconds in morning only
+    Public Function payrollTotalSecondsAM(id As String, fromDate As String, toDate As String)
+        Dim seconds As Integer = 0
+
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@from", fromDate)
+        SQL.AddParam("@to", toDate)
+        SQL.ExecQueryDT("
+            SELECT id FROM attendance_in WHERE
+            employee_id = @id AND date BETWEEN @from AND @to;
+        ")
+        If SQL.HasException(True) Then Return Nothing
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                If Not IsDBNull(r(0)) Then
+                    'get total seconds per attendance
+                    Dim in_id = r(0)
+
+                    SQL.AddParam("@id", in_id)
+                    SQL.ExecQueryDT("
+                        SELECT SUM(DATEDIFF(SECOND, time_in, time_out)) AS mins FROM attendance_in
+                        WHERE id = @id;
+                    ")
+                    If SQL.HasException(True) Then Return Nothing
+                    If SQL.RecordCountDT > 0 Then
+                        For Each s As DataRow In SQL.DBDT.Rows
+                            seconds = seconds + s(0)
+                        Next
+                    End If
+                End If
+            Next
+        End If
+
+        Return seconds
+
+    End Function
+
+    'get total seconds in afternoon only
+    Public Function payrollTotalSecondsPM(id As String, fromDate As String, toDate As String)
+        Dim seconds As Integer = 0
+
+        SQL.AddParam("@id", id)
+        SQL.AddParam("@from", fromDate)
+        SQL.AddParam("@to", toDate)
+        SQL.ExecQueryDT("
+            SELECT a.id FROM attendance_out a LEFT JOIN attendance_in b
+            ON a.attendance_in_id = b.id WHERE
+            employee_id = @id AND date BETWEEN @from AND @to;
+        ")
+        If SQL.HasException(True) Then Return Nothing
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                If Not IsDBNull(r(0)) Then
+                    'get total seconds per attendance
+                    Dim out_id = r(0)
+
+                    SQL.AddParam("@id", out_id)
+                    SQL.ExecQueryDT("
+                        SELECT SUM(DATEDIFF(SECOND, time_in, time_out)) AS mins FROM attendance_out
+                        WHERE id = @id;
+                    ")
+                    If SQL.HasException(True) Then Return Nothing
+                    If SQL.RecordCountDT > 0 Then
+                        For Each s As DataRow In SQL.DBDT.Rows
+                            seconds = seconds + s(0)
+                        Next
+                    End If
+                End If
+            Next
+        End If
+
+        Return seconds
+
+    End Function
 
 End Class

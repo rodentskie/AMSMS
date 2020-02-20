@@ -33,13 +33,14 @@ Partial Class mainform
         Me.AttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SetCutOffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MonitoringToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PayrollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.msMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'msMain
         '
         Me.msMain.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.EmployeesToolStripMenuItem, Me.VaultMonitoringToolStripMenuItem, Me.AttendanceToolStripMenuItem})
+        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.EmployeesToolStripMenuItem, Me.VaultMonitoringToolStripMenuItem, Me.AttendanceToolStripMenuItem, Me.PayrollToolStripMenuItem})
         Me.msMain.Location = New System.Drawing.Point(0, 0)
         Me.msMain.Name = "msMain"
         Me.msMain.Size = New System.Drawing.Size(736, 26)
@@ -100,14 +101,20 @@ Partial Class mainform
         'SetCutOffToolStripMenuItem
         '
         Me.SetCutOffToolStripMenuItem.Name = "SetCutOffToolStripMenuItem"
-        Me.SetCutOffToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SetCutOffToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.SetCutOffToolStripMenuItem.Text = "Set Cut Off"
         '
         'MonitoringToolStripMenuItem
         '
         Me.MonitoringToolStripMenuItem.Name = "MonitoringToolStripMenuItem"
-        Me.MonitoringToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.MonitoringToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.MonitoringToolStripMenuItem.Text = "Monitoring"
+        '
+        'PayrollToolStripMenuItem
+        '
+        Me.PayrollToolStripMenuItem.Name = "PayrollToolStripMenuItem"
+        Me.PayrollToolStripMenuItem.Size = New System.Drawing.Size(63, 22)
+        Me.PayrollToolStripMenuItem.Text = "Payroll"
         '
         'mainform
         '
@@ -142,4 +149,5 @@ Partial Class mainform
     Friend WithEvents AttendanceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SetCutOffToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MonitoringToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PayrollToolStripMenuItem As ToolStripMenuItem
 End Class

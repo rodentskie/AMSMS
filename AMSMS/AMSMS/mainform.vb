@@ -114,4 +114,10 @@
         attendance.Show()
     End Sub
 
+    Private Sub PayrollToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PayrollToolStripMenuItem.Click
+        closeForms()
+        payrolls.MdiParent = Me
+        payrolls.Show()
+    End Sub
+
 End Class

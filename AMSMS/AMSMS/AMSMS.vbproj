@@ -50,10 +50,17 @@
     <Reference Include="AxInterop.ZKFPEngXControl">
       <HintPath>bin\Debug\dlls\AxInterop.ZKFPEngXControl.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -168,6 +175,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Payroll\payrolls.Designer.vb">
+      <DependentUpon>payrolls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payroll\payrolls.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Positions\positionAdd.Designer.vb">
       <DependentUpon>positionAdd.vb</DependentUpon>
     </Compile>
@@ -184,6 +197,24 @@
       <DependentUpon>positions.vb</DependentUpon>
     </Compile>
     <Compile Include="Positions\positions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\loadingReport.Designer.vb">
+      <DependentUpon>loadingReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\loadingReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\payroll.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>payroll.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\viewReports.Designer.vb">
+      <DependentUpon>viewReports.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\viewReports.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\dgvPaging.vb" />
@@ -243,6 +274,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payroll\payrolls.resx">
+      <DependentUpon>payrolls.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Positions\positionAdd.resx">
       <DependentUpon>positionAdd.vb</DependentUpon>
     </EmbeddedResource>
@@ -251,6 +285,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Positions\positions.resx">
       <DependentUpon>positions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\loadingReport.resx">
+      <DependentUpon>loadingReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\payroll.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>payroll.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\viewReports.resx">
+      <DependentUpon>viewReports.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vaults\vaultMonitoring64.resx">
       <DependentUpon>vaultMonitoring64.vb</DependentUpon>
@@ -268,7 +312,9 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
