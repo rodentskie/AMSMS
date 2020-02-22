@@ -10,6 +10,13 @@ Public Class attendance
     Dim comPort As String = ""
     Delegate Sub SetTextCallback(ByVal [text] As String) 'Added to prevent threading errors during receiveing of data
 
+    '##
+    Public Property isConnected As Boolean = False  'check if connected to arduino
+    Public Property notConnected As Boolean = False
+    Public Property connectCounter As Integer = 0       'allow manual type after 5 attempts
+
+    Public Property activateOnce = False        'activated event
+    '##
     Private Sub attendance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtId.Select()
         txtId.Focus()
@@ -148,6 +155,74 @@ Public Class attendance
     End Sub
 
     Private Sub attendance_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        sendSerialExit()
+    End Sub
+
+    Private Sub sp_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles sp.DataReceived
+        If notConnected = False Then
+            'establish connection
+            conn(sp.ReadLine())
+
+            establishConnection()
+
+        Else
+            ReceivedText(sp.ReadLine())
+        End If
+    End Sub
+
+    '##
+    'connecting to arduino
+    Public Sub establishConnection()
+        Dim s As String = txtCon.Text.Trim
+        If s = "r" Then
+            activateOnce = True
+            f.Delay(0.5)
+            isConnected = True
+            notConnected = True
+        End If
+    End Sub
+
+    'send data to connect to ard
+    Public Sub sendSerialData()
+        If comPort <> "" Then
+            sp.Write("b")
+        End If
+    End Sub
+
+    'send serial to exit function
+    Public Sub sendSerialExit()
+        If comPort <> "" Then
+            sp.Write("e")
+        End If
+    End Sub
+
+    Private Sub conn(ByVal [text] As String)
+        'compares the ID of the creating Thread to the ID of the calling Thread
+        If Me.txtId.InvokeRequired Then
+            Dim x As New SetTextCallback(AddressOf conn)
+            Me.Invoke(x, New Object() {(text)})
+        Else
+            Me.txtCon.Text = ""
+            f.Delay(0.1)
+            Me.txtCon.Text &= [text]
+        End If
+    End Sub
+
+    'sub check if connected to arduino
+    Sub connectArd()
+        Me.Enabled = False
+        f.Delay(0.5)
+        comLoading.Show()
+    End Sub
+    '##
+
+    Private Sub attendance_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        If activateOnce = False Then
+            connectArd()
+        End If
+    End Sub
+
+    Private Sub attendance_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         timers.Stop()
 
         If sp.IsOpen = True Then
@@ -155,8 +230,5 @@ Public Class attendance
         End If
     End Sub
 
-    Private Sub sp_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles sp.DataReceived
-        ReceivedText(sp.ReadLine())
-    End Sub
 
 End Class

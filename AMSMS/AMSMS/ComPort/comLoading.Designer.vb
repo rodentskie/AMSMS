@@ -22,7 +22,7 @@ Partial Class comLoading
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblHeader = New System.Windows.Forms.Label()
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.pbIn = New System.Windows.Forms.PictureBox()
         Me.pbOut = New System.Windows.Forms.PictureBox()
@@ -30,15 +30,15 @@ Partial Class comLoading
         CType(Me.pbOut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label1
+        'lblHeader
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Consolas", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 14)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(184, 18)
-        Me.Label1.TabIndex = 28
-        Me.Label1.Text = "Establising Connection"
+        Me.lblHeader.AutoSize = True
+        Me.lblHeader.Font = New System.Drawing.Font("Consolas", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeader.Location = New System.Drawing.Point(12, 14)
+        Me.lblHeader.Name = "lblHeader"
+        Me.lblHeader.Size = New System.Drawing.Size(184, 18)
+        Me.lblHeader.TabIndex = 28
+        Me.lblHeader.Text = "Establising Connection"
         '
         'lblStatus
         '
@@ -74,7 +74,7 @@ Partial Class comLoading
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(349, 134)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblHeader)
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.pbIn)
         Me.Controls.Add(Me.pbOut)
@@ -89,7 +89,7 @@ Partial Class comLoading
 
     End Sub
 
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblHeader As Label
     Friend WithEvents lblStatus As Label
     Friend WithEvents pbIn As PictureBox
     Friend WithEvents pbOut As PictureBox

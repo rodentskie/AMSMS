@@ -49,3 +49,4 @@ D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.vbproj.Gen
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.exe
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.xml
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.pdb
+D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.vbprojResolveAssemblyReference.cache

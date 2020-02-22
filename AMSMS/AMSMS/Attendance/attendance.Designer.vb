@@ -41,6 +41,7 @@ Partial Class attendance
         Me.Label2 = New System.Windows.Forms.Label()
         Me.sp = New System.IO.Ports.SerialPort(Me.components)
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtCon = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -220,11 +221,20 @@ Partial Class attendance
         Me.Label5.TabIndex = 199
         Me.Label5.Text = "Scan"
         '
+        'txtCon
+        '
+        Me.txtCon.Location = New System.Drawing.Point(310, 606)
+        Me.txtCon.Name = "txtCon"
+        Me.txtCon.Size = New System.Drawing.Size(100, 20)
+        Me.txtCon.TabIndex = 200
+        Me.txtCon.Visible = False
+        '
         'attendance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1332, 638)
+        Me.Controls.Add(Me.txtCon)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtId)
@@ -259,4 +269,5 @@ Partial Class attendance
     Friend WithEvents lblTime As Label
     Friend WithEvents sp As IO.Ports.SerialPort
     Friend WithEvents Label5 As Label
+    Friend WithEvents txtCon As TextBox
 End Class

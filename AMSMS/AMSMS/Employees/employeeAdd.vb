@@ -277,4 +277,16 @@ Public Class employeeAdd
     Private Sub txtContact_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtContact.KeyPress
         e.Handled = Not (Char.IsDigit(e.KeyChar) Or Asc(e.KeyChar) = 8)
     End Sub
+
+    Private Sub employeeAdd_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        sendSerialExit()
+    End Sub
+
+    'send serial to exit function
+    Public Sub sendSerialExit()
+        If comPort <> "" Then
+            sp.Write("e")
+        End If
+    End Sub
+
 End Class

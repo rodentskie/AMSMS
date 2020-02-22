@@ -43,6 +43,26 @@
                 Me.Close()
                 Exit Sub
             End If
+        End If
+
+        '##
+
+        If f.IsFormOpen(attendance) Then
+            pbIn.Width = 5
+            oTimer.Start()
+
+            If onceBool = True Then
+                attendance.sendSerialData()
+                onceBool = False
+            End If
+
+            If attendance.isConnected = True Then
+                ' connected to arduino
+                oTimer.Stop()
+                attendance.Enabled = True
+                Me.Close()
+                Exit Sub
+            End If
 
         End If
     End Sub
