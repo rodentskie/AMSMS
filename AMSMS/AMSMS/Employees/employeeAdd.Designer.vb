@@ -25,6 +25,7 @@ Partial Class employeeAdd
         Me.components = New System.ComponentModel.Container()
         Me.fpicture = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblClear = New System.Windows.Forms.Label()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.lblGuide = New System.Windows.Forms.Label()
         Me.txtContact = New System.Windows.Forms.TextBox()
@@ -48,7 +49,7 @@ Partial Class employeeAdd
         Me.btnClear = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.sp = New System.IO.Ports.SerialPort(Me.components)
-        Me.lblClear = New System.Windows.Forms.Label()
+        Me.txtCon = New System.Windows.Forms.TextBox()
         CType(Me.fpicture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -95,6 +96,18 @@ Partial Class employeeAdd
         Me.GroupBox1.TabIndex = 30
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Input Here"
+        '
+        'lblClear
+        '
+        Me.lblClear.AutoSize = True
+        Me.lblClear.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.lblClear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblClear.ForeColor = System.Drawing.Color.Blue
+        Me.lblClear.Location = New System.Drawing.Point(173, 31)
+        Me.lblClear.Name = "lblClear"
+        Me.lblClear.Size = New System.Drawing.Size(36, 15)
+        Me.lblClear.TabIndex = 50
+        Me.lblClear.Text = "Clear"
         '
         'btnAdd
         '
@@ -287,23 +300,20 @@ Partial Class employeeAdd
         'sp
         '
         '
-        'lblClear
+        'txtCon
         '
-        Me.lblClear.AutoSize = True
-        Me.lblClear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblClear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblClear.ForeColor = System.Drawing.Color.Blue
-        Me.lblClear.Location = New System.Drawing.Point(173, 31)
-        Me.lblClear.Name = "lblClear"
-        Me.lblClear.Size = New System.Drawing.Size(36, 15)
-        Me.lblClear.TabIndex = 50
-        Me.lblClear.Text = "Clear"
+        Me.txtCon.Location = New System.Drawing.Point(183, 21)
+        Me.txtCon.Name = "txtCon"
+        Me.txtCon.Size = New System.Drawing.Size(100, 20)
+        Me.txtCon.TabIndex = 32
+        Me.txtCon.Visible = False
         '
         'employeeAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(749, 379)
+        Me.Controls.Add(Me.txtCon)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
@@ -346,4 +356,5 @@ Partial Class employeeAdd
     Friend WithEvents fpicture As PictureBox
     Friend WithEvents sp As IO.Ports.SerialPort
     Friend WithEvents lblClear As Label
+    Friend WithEvents txtCon As TextBox
 End Class

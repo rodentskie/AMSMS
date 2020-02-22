@@ -16,6 +16,11 @@ Public Class employeeAdd
     Dim comPort As String = ""
     Delegate Sub SetTextCallback(ByVal [text] As String) 'Added to prevent threading errors during receiveing of data
 
+    Public Property isConnected As Boolean = False  'check if connected to arduino
+    Public Property notConnected As Boolean = False
+    Public Property connectCounter As Integer = 0       'allow manual type after 5 attempts
+
+    Public Property activateOnce = False        'activated event
     Private Sub employeeAdd_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mainform.Enabled = True
         employees.Enabled = True
@@ -49,6 +54,7 @@ Public Class employeeAdd
         getComPort()
 
         initPort()
+
     End Sub
 
     Sub getComPort()
@@ -94,6 +100,13 @@ Public Class employeeAdd
         ZkFprint.CancelEnroll()
         ZkFprint.EnrollCount = 3
         ZkFprint.BeginEnroll()
+    End Sub
+
+    'sub check if connected to arduino
+    Sub connectArd()
+        Me.Enabled = False
+        f.Delay(0.5)
+        comLoading.Show()
     End Sub
 
     Private Sub employeeAdd_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
@@ -200,7 +213,15 @@ Public Class employeeAdd
     End Sub
 
     Private Sub sp_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles sp.DataReceived
-        ReceivedText(sp.ReadLine())
+        If notConnected = False Then
+            'establish connection
+            conn(sp.ReadLine())
+
+            establishConnection()
+
+        Else
+            ReceivedText(sp.ReadLine())
+        End If
     End Sub
 
     Private Sub ReceivedText(ByVal [text] As String)
@@ -213,7 +234,47 @@ Public Class employeeAdd
         End If
     End Sub
 
+    Private Sub conn(ByVal [text] As String)
+        'compares the ID of the creating Thread to the ID of the calling Thread
+        If Me.txtId.InvokeRequired Then
+            Dim x As New SetTextCallback(AddressOf conn)
+            Me.Invoke(x, New Object() {(text)})
+        Else
+            Me.txtCon.Text = ""
+            f.Delay(0.1)
+            Me.txtCon.Text &= [text]
+        End If
+    End Sub
+
     Private Sub lblClear_Click(sender As Object, e As EventArgs) Handles lblClear.Click
         txtId.Text = ""
+    End Sub
+
+    'connecting to arduino
+    Public Sub establishConnection()
+        Dim s As String = txtCon.Text.Trim
+        If s = "r" Then
+            activateOnce = True
+            f.Delay(0.5)
+            isConnected = True
+            notConnected = True
+        End If
+    End Sub
+
+    'send data to connect to ard
+    Public Sub sendSerialData()
+        If comPort <> "" Then
+            sp.Write("a")
+        End If
+    End Sub
+
+    Private Sub employeeAdd_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        If activateOnce = False Then
+            connectArd()
+        End If
+    End Sub
+
+    Private Sub txtContact_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtContact.KeyPress
+        e.Handled = Not (Char.IsDigit(e.KeyChar) Or Asc(e.KeyChar) = 8)
     End Sub
 End Class

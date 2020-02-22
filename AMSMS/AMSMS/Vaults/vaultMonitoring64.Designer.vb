@@ -24,16 +24,16 @@ Partial Class vaultMonitoring64
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.picCapture = New System.Windows.Forms.PictureBox()
-        Me.pbTest = New System.Windows.Forms.PictureBox()
         Me.lblGuide = New System.Windows.Forms.Label()
         Me.fpicture = New System.Windows.Forms.PictureBox()
+        Me.picCapture = New System.Windows.Forms.PictureBox()
+        Me.pbTest = New System.Windows.Forms.PictureBox()
         Me.sp = New System.IO.Ports.SerialPort(Me.components)
         Me.txtId = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.fpicture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCapture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbTest, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.fpicture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -47,6 +47,25 @@ Partial Class vaultMonitoring64
         Me.GroupBox1.Size = New System.Drawing.Size(874, 534)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
+        '
+        'lblGuide
+        '
+        Me.lblGuide.AutoSize = True
+        Me.lblGuide.Location = New System.Drawing.Point(657, 17)
+        Me.lblGuide.Name = "lblGuide"
+        Me.lblGuide.Size = New System.Drawing.Size(71, 15)
+        Me.lblGuide.TabIndex = 82
+        Me.lblGuide.Text = "Finger Print"
+        '
+        'fpicture
+        '
+        Me.fpicture.BackColor = System.Drawing.SystemColors.Window
+        Me.fpicture.Location = New System.Drawing.Point(660, 35)
+        Me.fpicture.Name = "fpicture"
+        Me.fpicture.Size = New System.Drawing.Size(208, 205)
+        Me.fpicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.fpicture.TabIndex = 81
+        Me.fpicture.TabStop = False
         '
         'picCapture
         '
@@ -70,24 +89,8 @@ Partial Class vaultMonitoring64
         Me.pbTest.TabIndex = 81
         Me.pbTest.TabStop = False
         '
-        'lblGuide
+        'sp
         '
-        Me.lblGuide.AutoSize = True
-        Me.lblGuide.Location = New System.Drawing.Point(657, 17)
-        Me.lblGuide.Name = "lblGuide"
-        Me.lblGuide.Size = New System.Drawing.Size(71, 15)
-        Me.lblGuide.TabIndex = 82
-        Me.lblGuide.Text = "Finger Print"
-        '
-        'fpicture
-        '
-        Me.fpicture.BackColor = System.Drawing.SystemColors.Window
-        Me.fpicture.Location = New System.Drawing.Point(660, 35)
-        Me.fpicture.Name = "fpicture"
-        Me.fpicture.Size = New System.Drawing.Size(208, 205)
-        Me.fpicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.fpicture.TabIndex = 81
-        Me.fpicture.TabStop = False
         '
         'txtId
         '
@@ -100,7 +103,7 @@ Partial Class vaultMonitoring64
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(898, 627)
+        Me.ClientSize = New System.Drawing.Size(898, 558)
         Me.Controls.Add(Me.txtId)
         Me.Controls.Add(Me.pbTest)
         Me.Controls.Add(Me.GroupBox1)
@@ -112,9 +115,9 @@ Partial Class vaultMonitoring64
         Me.Text = "Vault Monitoring 64"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.fpicture, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picCapture, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbTest, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.fpicture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

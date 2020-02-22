@@ -112,6 +112,12 @@
     <Compile Include="Attendance\attendanceCutOff.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ComPort\comLoading.Designer.vb">
+      <DependentUpon>comLoading.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ComPort\comLoading.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EmployeeLogin\empLoginAdd.Designer.vb">
       <DependentUpon>empLoginAdd.vb</DependentUpon>
     </Compile>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Attendance\attendanceCutOff.resx">
       <DependentUpon>attendanceCutOff.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComPort\comLoading.resx">
+      <DependentUpon>comLoading.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeeLogin\empLoginAdd.resx">
       <DependentUpon>empLoginAdd.vb</DependentUpon>

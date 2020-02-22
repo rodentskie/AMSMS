@@ -28,6 +28,7 @@ D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.adminAdd.r
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.adminEdit.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.attendance.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.attendanceCutOff.resources
+D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.comLoading.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.empLoginAdd.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.empLogins.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.empLoginUpdate.resources
