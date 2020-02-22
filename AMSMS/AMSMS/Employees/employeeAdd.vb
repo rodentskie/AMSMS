@@ -21,6 +21,7 @@ Public Class employeeAdd
     Public Property connectCounter As Integer = 0       'allow manual type after 5 attempts
 
     Public Property activateOnce = False        'activated event
+
     Private Sub employeeAdd_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mainform.Enabled = True
         employees.Enabled = True
@@ -236,7 +237,7 @@ Public Class employeeAdd
 
     Private Sub conn(ByVal [text] As String)
         'compares the ID of the creating Thread to the ID of the calling Thread
-        If Me.txtId.InvokeRequired Then
+        If Me.txtCon.InvokeRequired Then
             Dim x As New SetTextCallback(AddressOf conn)
             Me.Invoke(x, New Object() {(text)})
         Else

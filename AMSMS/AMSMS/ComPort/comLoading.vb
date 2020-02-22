@@ -65,6 +65,27 @@
             End If
 
         End If
+
+        '##
+        If f.IsFormOpen(setGSM) Then
+            pbIn.Width = 5
+            oTimer.Start()
+
+            If onceBool = True Then
+                setGSM.sendSerialData()
+                onceBool = False
+            End If
+
+            If setGSM.isConnected = True Then
+                ' connected to arduino
+                oTimer.Stop()
+                setGSM.Enabled = True
+                Me.Close()
+                Exit Sub
+            End If
+
+        End If
+
     End Sub
 
 End Class

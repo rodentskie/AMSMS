@@ -335,6 +335,19 @@
             Exit Sub
         End If
 
+        'don't allow multiple managers
+        SQL.AddParam("@pos", employeeAdd.cbxPositions.Text)
+        SQL.ExecQueryDT("
+            SELECT * FROM employees e
+            LEFT JOIN positions p ON p.id = e.position
+            WHERE LOWER(p.position_name) = @pos;
+        ")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            MessageBox.Show("There is a manager already, this is not allowed.", "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
         Dim id = employeeAdd.txtId.Text
         SQL.AddParam("@id", id.Trim)
         SQL.AddParam("@fn", employeeAdd.txtFn.Text)
@@ -1149,7 +1162,11 @@
                     If SQL.HasException(True) Then Return Nothing
                     If SQL.RecordCountDT > 0 Then
                         For Each s As DataRow In SQL.DBDT.Rows
-                            seconds = seconds + s(0)
+                            If Not IsDBNull(s(0)) Then
+                                seconds = seconds + s(0)
+                            Else
+                                seconds = seconds + 0
+                            End If
                         Next
                     End If
                 End If
@@ -1187,7 +1204,11 @@
                     If SQL.HasException(True) Then Return Nothing
                     If SQL.RecordCountDT > 0 Then
                         For Each s As DataRow In SQL.DBDT.Rows
-                            seconds = seconds + s(0)
+                            If Not IsDBNull(s(0)) Then
+                                seconds = seconds + s(0)
+                            Else
+                                seconds = seconds + 0
+                            End If
                         Next
                     End If
                 End If
@@ -1198,4 +1219,28 @@
 
     End Function
 
+
+    'GSM
+
+    'return manager number
+    Public Function returnManager()
+        Dim num = ""
+
+        SQL.ExecQueryDT("
+            SELECT contact_num FROM employees e
+            LEFT JOIN positions p ON p.id = e.position
+            WHERE LOWER(p.position_name) = 'manager';
+        ")
+
+        If SQL.HasException(True) Then Return Nothing
+        If SQL.RecordCountDT > 0 Then
+            For Each r As DataRow In SQL.DBDT.Rows
+                If Not IsDBNull(r(0)) Then
+                    num = r(0)
+                End If
+            Next
+        End If
+
+        Return num
+    End Function
 End Class

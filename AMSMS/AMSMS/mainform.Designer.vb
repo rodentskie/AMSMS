@@ -34,13 +34,14 @@ Partial Class mainform
         Me.SetCutOffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MonitoringToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PayrollToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SetGSMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.msMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'msMain
         '
         Me.msMain.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.EmployeesToolStripMenuItem, Me.VaultMonitoringToolStripMenuItem, Me.AttendanceToolStripMenuItem, Me.PayrollToolStripMenuItem})
+        Me.msMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdminToolStripMenuItem, Me.EmployeesToolStripMenuItem, Me.VaultMonitoringToolStripMenuItem, Me.AttendanceToolStripMenuItem, Me.PayrollToolStripMenuItem, Me.SetGSMToolStripMenuItem})
         Me.msMain.Location = New System.Drawing.Point(0, 0)
         Me.msMain.Name = "msMain"
         Me.msMain.Size = New System.Drawing.Size(736, 26)
@@ -116,6 +117,12 @@ Partial Class mainform
         Me.PayrollToolStripMenuItem.Size = New System.Drawing.Size(63, 22)
         Me.PayrollToolStripMenuItem.Text = "Payroll"
         '
+        'SetGSMToolStripMenuItem
+        '
+        Me.SetGSMToolStripMenuItem.Name = "SetGSMToolStripMenuItem"
+        Me.SetGSMToolStripMenuItem.Size = New System.Drawing.Size(71, 22)
+        Me.SetGSMToolStripMenuItem.Text = "Set GSM"
+        '
         'mainform
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -150,4 +157,5 @@ Partial Class mainform
     Friend WithEvents SetCutOffToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MonitoringToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PayrollToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SetGSMToolStripMenuItem As ToolStripMenuItem
 End Class

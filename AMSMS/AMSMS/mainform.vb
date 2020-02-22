@@ -120,4 +120,9 @@
         payrolls.Show()
     End Sub
 
+    Private Sub SetGSMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetGSMToolStripMenuItem.Click
+        closeForms()
+        setGSM.MdiParent = Me
+        setGSM.Show()
+    End Sub
 End Class
