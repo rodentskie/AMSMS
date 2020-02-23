@@ -36,6 +36,7 @@ D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.employeeAd
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.employees.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.employeeUpdate.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.loginForm.resources
+D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.setGSM.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.mainform.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.Resources.resources
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.payrolls.resources
@@ -49,4 +50,4 @@ D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.vbproj.Gen
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.exe
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.xml
 D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.pdb
-D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.setGSM.resources
+D:\VB Projects\ellainebanang\thesis\AMSMS\AMSMS\AMSMS\obj\Debug\AMSMS.vbprojResolveAssemblyReference.cache

@@ -125,4 +125,28 @@
         setGSM.MdiParent = Me
         setGSM.Show()
     End Sub
+
+    Private Sub mainform_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If MdiChildren.Length > 0 Then
+            Dim result As Integer = MessageBox.Show("A form is currently open, closing this will not save any data. Do you wish to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If result = DialogResult.Yes Then
+                e.Cancel = False
+                For Each r As Form In Me.MdiChildren
+                    r.Close()
+                Next
+                loginForm.Show()
+                loginForm.txtUname.Focus()
+                loginForm.txtUname.Focus()
+                loginForm.txtUname.Select()
+            Else
+                e.Cancel = True
+            End If
+        Else
+            loginForm.Show()
+            loginForm.txtUname.Focus()
+            loginForm.txtUname.Focus()
+            loginForm.txtUname.Select()
+        End If
+    End Sub
+
 End Class

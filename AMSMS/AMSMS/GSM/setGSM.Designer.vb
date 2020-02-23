@@ -111,6 +111,7 @@ Partial Class setGSM
         Me.txtId.Name = "txtId"
         Me.txtId.Size = New System.Drawing.Size(198, 20)
         Me.txtId.TabIndex = 3
+        Me.txtId.Visible = False
         '
         'txtconn
         '
@@ -118,6 +119,7 @@ Partial Class setGSM
         Me.txtconn.Name = "txtconn"
         Me.txtconn.Size = New System.Drawing.Size(198, 20)
         Me.txtconn.TabIndex = 4
+        Me.txtconn.Visible = False
         '
         'setGSM
         '
