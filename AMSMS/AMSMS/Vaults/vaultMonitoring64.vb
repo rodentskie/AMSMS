@@ -39,8 +39,16 @@ Public Class vaultMonitoring64
     '#for comport
     Dim comPort As String = ""
     Delegate Sub SetTextCallback(ByVal [text] As String) 'Added to prevent threading errors during receiveing of data
-    Dim WithEvents ZkFprint As New AxZKFPEngX
 
+    Public Property isConnected As Boolean = False  'check if connected to arduino
+    Public Property notConnected As Boolean = False
+    Public Property connectCounter As Integer = 0       'allow manual type after 5 attempts
+
+    Public Property activateOnce = False        'activated event
+    '#end for com port
+
+    '# for finger scan
+    Dim WithEvents ZkFprint As New AxZKFPEngX
     Dim template As String = "" 'store template from db
 
     '#for com port and finger scanner
@@ -69,6 +77,60 @@ Public Class vaultMonitoring64
         End If
     End Sub
 
+    Private Sub conn(ByVal [text] As String)
+        'compares the ID of the creating Thread to the ID of the calling Thread
+        If Me.txtconn.InvokeRequired Then
+            Dim x As New SetTextCallback(AddressOf conn)
+            Me.Invoke(x, New Object() {(text)})
+        Else
+            Me.txtconn.Text = ""
+            f.Delay(0.1)
+            Me.txtconn.Text &= [text]
+        End If
+    End Sub
+
+    'sub check if connected to arduino
+    Sub connectArd()
+        Me.Enabled = False
+        f.Delay(0.5)
+        comLoading.Show()
+    End Sub
+
+    'send serial to exit function
+    Public Sub sendSerialExit()
+        If comPort <> "" Then
+            sp.Write("e")
+        End If
+    End Sub
+
+    'send data to connect to ard
+    Public Sub sendSerialData()
+        If comPort <> "" Then
+            sp.Write("v")
+        End If
+    End Sub
+
+    'connecting to arduino
+    Public Sub establishConnection()
+        Dim s As String = txtconn.Text.Trim
+
+        'to check if connected
+        If s = "r" Then
+            activateOnce = True
+            f.Delay(0.5)
+            isConnected = True
+            notConnected = True
+        End If
+
+        'to check if keypad code is correct
+        If s = "k" Then
+            'set hardware for scanning finger
+            f.Delay(2)
+            sp.Write("b")
+        End If
+    End Sub
+
+    '#scanner
     'initialize scanner
     Private Sub InitialAxZkfp()
         Try
@@ -194,15 +256,30 @@ Public Class vaultMonitoring64
     End Sub
 
     Private Sub sp_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles sp.DataReceived
-        ReceivedText(sp.ReadLine())
+        If notConnected = False Then
+            'establish connection
+            conn(sp.ReadLine())
 
-        template = "" 'clear
-        template = q.returnTemplate(txtId.Text)
+            establishConnection()
 
-        If template = "" Then
+        Else
+            ReceivedText(sp.ReadLine())
 
+            template = "" 'clear
+            template = q.returnTemplate(txtId.Text)
+
+            If template = "" Then
+                ' null so not allowed to open
+                ' display to LCD
+                f.Delay(2)
+                sp.Write("c")
+            Else
+                'has the template now; validate keypad; returns k if correct keypad code
+                notConnected = False
+                f.Delay(2)
+                sp.Write("a")
+            End If
         End If
-
     End Sub
 
     Private Sub ZkFprint_OnCapture(sender As Object, e As IZKFPEngXEvents_OnCaptureEvent) Handles ZkFprint.OnCapture
@@ -210,9 +287,13 @@ Public Class vaultMonitoring64
         Dim sTemp As String = ZkFprint.GetTemplateAsString()
 
         If ZkFprint.VerFingerFromStr(template, sTemp, False, RegChanged) Then
+            'save image and open vault; display LCD; send SMS
             saveImage()
+            f.Delay(1)
+            sp.Write("a")
         Else
-            MsgBox("fail")
+            f.Delay(1)
+            sp.Write("b")
         End If
     End Sub
 
@@ -224,6 +305,16 @@ Public Class vaultMonitoring64
         ZkFprint.PrintImageAt(dc, 0, 0, bmp.Width, bmp.Height)
         g.Dispose()
         fpicture.Image = bmp
+    End Sub
+
+    Private Sub vaultMonitoring64_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        If activateOnce = False Then
+            connectArd()
+        End If
+    End Sub
+
+    Private Sub vaultMonitoring64_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        sendSerialExit()
     End Sub
 
 End Class

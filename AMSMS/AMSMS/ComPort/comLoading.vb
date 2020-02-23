@@ -86,6 +86,25 @@
 
         End If
 
+        '##
+        If f.IsFormOpen(vaultMonitoring64) Then
+            pbIn.Width = 5
+            oTimer.Start()
+
+            If onceBool = True Then
+                vaultMonitoring64.sendSerialData()
+                onceBool = False
+            End If
+
+            If vaultMonitoring64.isConnected = True Then
+                ' connected to arduino
+                oTimer.Stop()
+                vaultMonitoring64.Enabled = True
+                Me.Close()
+                Exit Sub
+            End If
+        End If
+
     End Sub
 
 End Class

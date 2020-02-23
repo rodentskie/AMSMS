@@ -30,6 +30,7 @@ Partial Class vaultMonitoring64
         Me.pbTest = New System.Windows.Forms.PictureBox()
         Me.sp = New System.IO.Ports.SerialPort(Me.components)
         Me.txtId = New System.Windows.Forms.TextBox()
+        Me.txtconn = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.fpicture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCapture, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,7 +85,7 @@ Partial Class vaultMonitoring64
         Me.pbTest.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.pbTest.Location = New System.Drawing.Point(520, 564)
         Me.pbTest.Name = "pbTest"
-        Me.pbTest.Size = New System.Drawing.Size(152, 91)
+        Me.pbTest.Size = New System.Drawing.Size(152, 142)
         Me.pbTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbTest.TabIndex = 81
         Me.pbTest.TabStop = False
@@ -94,16 +95,24 @@ Partial Class vaultMonitoring64
         '
         'txtId
         '
-        Me.txtId.Location = New System.Drawing.Point(297, 595)
+        Me.txtId.Location = New System.Drawing.Point(121, 609)
         Me.txtId.Name = "txtId"
-        Me.txtId.Size = New System.Drawing.Size(187, 20)
+        Me.txtId.Size = New System.Drawing.Size(393, 20)
         Me.txtId.TabIndex = 82
+        '
+        'txtconn
+        '
+        Me.txtconn.Location = New System.Drawing.Point(121, 635)
+        Me.txtconn.Name = "txtconn"
+        Me.txtconn.Size = New System.Drawing.Size(393, 20)
+        Me.txtconn.TabIndex = 83
         '
         'vaultMonitoring64
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(898, 558)
+        Me.ClientSize = New System.Drawing.Size(898, 718)
+        Me.Controls.Add(Me.txtconn)
         Me.Controls.Add(Me.txtId)
         Me.Controls.Add(Me.pbTest)
         Me.Controls.Add(Me.GroupBox1)
@@ -112,7 +121,7 @@ Partial Class vaultMonitoring64
         Me.MinimizeBox = False
         Me.Name = "vaultMonitoring64"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Vault Monitoring 64"
+        Me.Text = "Vault Monitoring"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.fpicture, System.ComponentModel.ISupportInitialize).EndInit()
@@ -130,4 +139,5 @@ Partial Class vaultMonitoring64
     Friend WithEvents fpicture As PictureBox
     Friend WithEvents sp As IO.Ports.SerialPort
     Friend WithEvents txtId As TextBox
+    Friend WithEvents txtconn As TextBox
 End Class
