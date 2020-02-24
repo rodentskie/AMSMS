@@ -16,6 +16,7 @@
     End Sub
 
     Sub showReport()
+        '##
         If f.IsFormOpen(payrolls) Then
             While payrolls.loadPrint = False
                 pbIn.Width = 5
@@ -37,6 +38,27 @@
             End While
         End If
 
+        '##
+        If f.IsFormOpen(ledControlLogs) Then
+            While ledControlLogs.loadPrint = False
+                pbIn.Width = 5
+                oTimer.Start()
+                If onceBool = True Then
+                    onceBool = False
+                    ledControlLogs.print()
+                End If
+
+                If ledControlLogs.loadPrint = True Then
+                    oTimer.Stop()
+                    Me.Close()
+                    mainform.Enabled = True
+                    ledControlLogs.Enabled = True
+                    Exit Sub
+                End If
+
+                Exit Sub
+            End While
+        End If
     End Sub
 
 End Class

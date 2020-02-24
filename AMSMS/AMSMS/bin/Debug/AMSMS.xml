@@ -22,5 +22,25 @@ AMSMS
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="T:AMSMS.myData">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:AMSMS.myData.lightlogsDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:AMSMS.myData.lightlogsRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:AMSMS.myData.lightlogsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
 </members>
 </doc>

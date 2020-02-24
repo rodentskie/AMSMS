@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="myData" targetNamespace="http://tempuri.org/myData.xsd" xmlns:mstns="http://tempuri.org/myData.xsd" xmlns="http://tempuri.org/myData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="myData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="myData" msprop:Generator_UserDSName="myData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="lightlogs" msprop:Generator_TableClassName="lightlogsDataTable" msprop:Generator_TableVarName="tablelightlogs" msprop:Generator_TablePropName="lightlogs" msprop:Generator_RowDeletingName="lightlogsRowDeleting" msprop:Generator_RowChangingName="lightlogsRowChanging" msprop:Generator_RowEvHandlerName="lightlogsRowChangeEventHandler" msprop:Generator_RowDeletedName="lightlogsRowDeleted" msprop:Generator_UserTableName="lightlogs" msprop:Generator_RowChangedName="lightlogsRowChanged" msprop:Generator_RowEvArgName="lightlogsRowChangeEvent" msprop:Generator_RowClassName="lightlogsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" minOccurs="0" />
+              <xs:element name="office" msprop:Generator_ColumnVarNameInTable="columnoffice" msprop:Generator_ColumnPropNameInRow="office" msprop:Generator_ColumnPropNameInTable="officeColumn" msprop:Generator_UserColumnName="office" type="xs:string" minOccurs="0" />
+              <xs:element name="action" msprop:Generator_ColumnVarNameInTable="columnaction" msprop:Generator_ColumnPropNameInRow="action" msprop:Generator_ColumnPropNameInTable="actionColumn" msprop:Generator_UserColumnName="action" type="xs:string" minOccurs="0" />
+              <xs:element name="time" msprop:Generator_ColumnVarNameInTable="columntime" msprop:Generator_ColumnPropNameInRow="time" msprop:Generator_ColumnPropNameInTable="timeColumn" msprop:Generator_UserColumnName="time" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

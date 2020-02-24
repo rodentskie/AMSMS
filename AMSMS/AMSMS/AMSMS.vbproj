@@ -166,6 +166,18 @@
     <Compile Include="GSM\setGSM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LEDControl\controlLED.Designer.vb">
+      <DependentUpon>controlLED.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LEDControl\controlLED.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LEDControl\ledControlLogs.Designer.vb">
+      <DependentUpon>ledControlLogs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LEDControl\ledControlLogs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mainform.Designer.vb">
       <DependentUpon>mainform.vb</DependentUpon>
     </Compile>
@@ -186,6 +198,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="myData.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>myData.xsd</DependentUpon>
     </Compile>
     <Compile Include="Payroll\payrolls.Designer.vb">
       <DependentUpon>payrolls.vb</DependentUpon>
@@ -210,6 +227,12 @@
     </Compile>
     <Compile Include="Positions\positions.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\lightlogs.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lightlogs.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\loadingReport.Designer.vb">
       <DependentUpon>loadingReport.vb</DependentUpon>
@@ -283,6 +306,12 @@
     <EmbeddedResource Include="GSM\setGSM.resx">
       <DependentUpon>setGSM.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LEDControl\controlLED.resx">
+      <DependentUpon>controlLED.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LEDControl\ledControlLogs.resx">
+      <DependentUpon>ledControlLogs.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainform.resx">
       <DependentUpon>mainform.vb</DependentUpon>
     </EmbeddedResource>
@@ -303,6 +332,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Positions\positions.resx">
       <DependentUpon>positions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\lightlogs.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>lightlogs.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\loadingReport.resx">
       <DependentUpon>loadingReport.vb</DependentUpon>
@@ -329,6 +362,17 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="myData.xsc">
+      <DependentUpon>myData.xsd</DependentUpon>
+    </None>
+    <None Include="myData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>myData.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="myData.xss">
+      <DependentUpon>myData.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

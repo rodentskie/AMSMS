@@ -43,25 +43,29 @@ Partial Class vaultMonitoring64
         Me.GroupBox1.Controls.Add(Me.fpicture)
         Me.GroupBox1.Controls.Add(Me.picCapture)
         Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(16, 15)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(874, 534)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(1165, 657)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         '
         'lblGuide
         '
         Me.lblGuide.AutoSize = True
-        Me.lblGuide.Location = New System.Drawing.Point(657, 17)
+        Me.lblGuide.Location = New System.Drawing.Point(876, 21)
+        Me.lblGuide.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblGuide.Name = "lblGuide"
-        Me.lblGuide.Size = New System.Drawing.Size(71, 15)
+        Me.lblGuide.Size = New System.Drawing.Size(91, 21)
         Me.lblGuide.TabIndex = 82
         Me.lblGuide.Text = "Finger Print"
         '
         'fpicture
         '
         Me.fpicture.BackColor = System.Drawing.SystemColors.Window
-        Me.fpicture.Location = New System.Drawing.Point(660, 35)
+        Me.fpicture.Location = New System.Drawing.Point(880, 43)
+        Me.fpicture.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.fpicture.Name = "fpicture"
         Me.fpicture.Size = New System.Drawing.Size(208, 205)
         Me.fpicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -72,9 +76,10 @@ Partial Class vaultMonitoring64
         '
         Me.picCapture.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.picCapture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.picCapture.Location = New System.Drawing.Point(6, 13)
+        Me.picCapture.Location = New System.Drawing.Point(8, 16)
+        Me.picCapture.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.picCapture.Name = "picCapture"
-        Me.picCapture.Size = New System.Drawing.Size(648, 515)
+        Me.picCapture.Size = New System.Drawing.Size(863, 633)
         Me.picCapture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picCapture.TabIndex = 80
         Me.picCapture.TabStop = False
@@ -83,9 +88,10 @@ Partial Class vaultMonitoring64
         '
         Me.pbTest.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.pbTest.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pbTest.Location = New System.Drawing.Point(520, 564)
+        Me.pbTest.Location = New System.Drawing.Point(693, 694)
+        Me.pbTest.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pbTest.Name = "pbTest"
-        Me.pbTest.Size = New System.Drawing.Size(152, 142)
+        Me.pbTest.Size = New System.Drawing.Size(201, 174)
         Me.pbTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbTest.TabIndex = 81
         Me.pbTest.TabStop = False
@@ -95,28 +101,31 @@ Partial Class vaultMonitoring64
         '
         'txtId
         '
-        Me.txtId.Location = New System.Drawing.Point(121, 609)
+        Me.txtId.Location = New System.Drawing.Point(161, 750)
+        Me.txtId.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtId.Name = "txtId"
-        Me.txtId.Size = New System.Drawing.Size(393, 20)
+        Me.txtId.Size = New System.Drawing.Size(523, 22)
         Me.txtId.TabIndex = 82
         '
         'txtconn
         '
-        Me.txtconn.Location = New System.Drawing.Point(121, 635)
+        Me.txtconn.Location = New System.Drawing.Point(161, 782)
+        Me.txtconn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtconn.Name = "txtconn"
-        Me.txtconn.Size = New System.Drawing.Size(393, 20)
+        Me.txtconn.Size = New System.Drawing.Size(523, 22)
         Me.txtconn.TabIndex = 83
         '
         'vaultMonitoring64
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(898, 718)
+        Me.ClientSize = New System.Drawing.Size(1197, 826)
         Me.Controls.Add(Me.txtconn)
         Me.Controls.Add(Me.txtId)
         Me.Controls.Add(Me.pbTest)
         Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "vaultMonitoring64"

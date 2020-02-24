@@ -128,6 +128,17 @@ Public Class vaultMonitoring64
             f.Delay(2)
             sp.Write("b")
         End If
+
+        'wrong keypad password; save image
+        If s = "v" Then
+            'saveImage()
+            notConnected = True
+        End If
+
+        ' wrong finger scanned
+        If s = "w" Then
+            notConnected = True
+        End If
     End Sub
 
     '#scanner
@@ -231,12 +242,16 @@ Public Class vaultMonitoring64
         Try
             Dim name = DateTime.Now.ToString("yyyy-MM-dd hhmm tt")
             pbTest.Image.Save(filepath & name & ".jpg")
+
+            f.Delay(0.5)
+            pbTest.Image = Nothing
         Catch ex As Exception
             MessageBox.Show("Error saving image: " & vbNewLine & ex.Message)
         End Try
     End Sub
 
     Sub saveVidToImage()
+        pbTest.Image = Nothing
         Dim data As IDataObject
         Dim bmap As Image
         SendMessage(hHwnd, WM_CAP_EDIT_COPY, 0, 0)
@@ -291,9 +306,13 @@ Public Class vaultMonitoring64
             saveImage()
             f.Delay(1)
             sp.Write("a")
+            notConnected = True
         Else
+            'wrong finger scan;
+            saveImage()
             f.Delay(1)
             sp.Write("b")
+            notConnected = True
         End If
     End Sub
 

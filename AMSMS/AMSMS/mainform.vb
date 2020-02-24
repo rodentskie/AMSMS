@@ -149,4 +149,16 @@
         End If
     End Sub
 
+    Private Sub ControlToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ControlToolStripMenuItem.Click
+        closeForms()
+        controlLED.MdiParent = Me
+        controlLED.Show()
+    End Sub
+
+    Private Sub LogsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogsToolStripMenuItem.Click
+        closeForms()
+        ledControlLogs.MdiParent = Me
+        ledControlLogs.Show()
+    End Sub
+
 End Class

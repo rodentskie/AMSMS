@@ -189,10 +189,12 @@ Public Class setGSM
         End If
 
         sp.Write("a")
-        sp.Write(txtManager.Text)
+        f.Delay(1)
+        sp.Write(txtManager.Text.ToString())
         f.Delay(2)
         sp.Write("b")
-        sp.Write(txtBFP.Text)
+        f.Delay(1)
+        sp.Write(txtBFP.Text.ToString())
         f.Delay(2)
 
         Me.Cursor = Cursors.Default

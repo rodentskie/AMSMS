@@ -1243,4 +1243,43 @@
 
         Return num
     End Function
+
+    '# light LOGS
+
+    'insert Logs
+    Public Sub insertLightLogs(office As String, action As String)
+        SQL.AddParam("@office", office)
+        SQL.AddParam("@action", action)
+
+        SQL.ExecQueryDT("INSERT INTO light_logs VALUES (@office,@action,GETDATE());")
+        If SQL.HasException(True) Then Exit Sub
+    End Sub
+
+    'display logs 
+    Public Sub lightLogsLoadDGV(dgv As DataGridView, from As String, tos As String)
+        SQL.AddParam("@from", from)
+        SQL.AddParam("@to", tos)
+        SQL.ExecQueryDT("
+            SELECT * FROM light_logs 
+            WHERE convert(varchar, time, 101) BETWEEN @from AND @to
+            ORDER BY time DESC;
+        ")
+        If SQL.HasException(True) Then Exit Sub
+        dgv.AllowUserToResizeColumns = False
+        dgv.AllowUserToResizeRows = False
+        dgv.AllowUserToAddRows = False
+        dgv.DataSource = SQL.DBDT
+        dgv.ClearSelection()
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        '##########
+        dgv.Columns(0).Visible = False
+        dgv.Columns(1).HeaderText = "OFFICE"
+        dgv.Columns(2).HeaderText = "ACTION"
+        dgv.Columns(3).HeaderText = "DATE TIME"
+        dgv.Columns(1).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(2).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(3).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(3).DefaultCellStyle.Format = "MM/dd/yyy hh:mm tt"
+        dgv.RowTemplate.Height = 30
+    End Sub
 End Class
