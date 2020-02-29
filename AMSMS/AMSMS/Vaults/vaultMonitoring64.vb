@@ -131,7 +131,7 @@ Public Class vaultMonitoring64
 
         'wrong keypad password; save image
         If s = "v" Then
-            'saveImage()
+            saveImage()
             notConnected = True
         End If
 
@@ -241,9 +241,12 @@ Public Class vaultMonitoring64
 
         Try
             Dim name = DateTime.Now.ToString("yyyy-MM-dd hhmm tt")
-            pbTest.Image.Save(filepath & name & ".jpg")
+            Dim fullpath = filepath & name & ".jpg"
+            pbTest.Image.Save(fullpath)
 
             f.Delay(0.5)
+
+            q.vaultLogsInsert(txtId.Text, fullpath)
             pbTest.Image = Nothing
         Catch ex As Exception
             MessageBox.Show("Error saving image: " & vbNewLine & ex.Message)
@@ -251,15 +254,23 @@ Public Class vaultMonitoring64
     End Sub
 
     Sub saveVidToImage()
-        pbTest.Image = Nothing
-        Dim data As IDataObject
-        Dim bmap As Image
-        SendMessage(hHwnd, WM_CAP_EDIT_COPY, 0, 0)
-        data = Clipboard.GetDataObject()
-        If data.GetDataPresent(GetType(System.Drawing.Bitmap)) Then
-            bmap = CType(data.GetData(GetType(System.Drawing.Bitmap)), Image)
-            pbTest.Image = bmap
-        End If
+        Try
+            pbTest.Image = Nothing
+            Dim data As IDataObject
+            Dim bmap As Image
+            SendMessage(hHwnd, WM_CAP_EDIT_COPY, 0, 0)
+
+            'clear clipboard
+            Clipboard.Clear()
+
+            data = Clipboard.GetDataObject()
+            If data.GetDataPresent(GetType(System.Drawing.Bitmap)) Then
+                bmap = CType(data.GetData(GetType(System.Drawing.Bitmap)), Image)
+                pbTest.Image = bmap
+            End If
+        Catch ex As Exception
+            Exit Sub
+        End Try
     End Sub
 
     Private Sub vaultMonitoring64_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -288,6 +299,7 @@ Public Class vaultMonitoring64
                 ' display to LCD
                 f.Delay(2)
                 sp.Write("c")
+                saveImage()
             Else
                 'has the template now; validate keypad; returns k if correct keypad code
                 notConnected = False

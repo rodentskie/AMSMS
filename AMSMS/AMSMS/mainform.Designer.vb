@@ -38,6 +38,8 @@ Partial Class mainform
         Me.LEDControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MonitorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LogsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.msMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -91,9 +93,10 @@ Partial Class mainform
         '
         'VaultMonitoringToolStripMenuItem
         '
+        Me.VaultMonitoringToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MonitorToolStripMenuItem, Me.LogsToolStripMenuItem1})
         Me.VaultMonitoringToolStripMenuItem.Name = "VaultMonitoringToolStripMenuItem"
-        Me.VaultMonitoringToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
-        Me.VaultMonitoringToolStripMenuItem.Text = "Vault Monitoring"
+        Me.VaultMonitoringToolStripMenuItem.Size = New System.Drawing.Size(52, 22)
+        Me.VaultMonitoringToolStripMenuItem.Text = "Vault"
         '
         'AttendanceToolStripMenuItem
         '
@@ -136,14 +139,26 @@ Partial Class mainform
         'LogsToolStripMenuItem
         '
         Me.LogsToolStripMenuItem.Name = "LogsToolStripMenuItem"
-        Me.LogsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.LogsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.LogsToolStripMenuItem.Text = "Logs"
         '
         'ControlToolStripMenuItem
         '
         Me.ControlToolStripMenuItem.Name = "ControlToolStripMenuItem"
-        Me.ControlToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ControlToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.ControlToolStripMenuItem.Text = "Control"
+        '
+        'MonitorToolStripMenuItem
+        '
+        Me.MonitorToolStripMenuItem.Name = "MonitorToolStripMenuItem"
+        Me.MonitorToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.MonitorToolStripMenuItem.Text = "Monitor"
+        '
+        'LogsToolStripMenuItem1
+        '
+        Me.LogsToolStripMenuItem1.Name = "LogsToolStripMenuItem1"
+        Me.LogsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.LogsToolStripMenuItem1.Text = "Logs"
         '
         'mainform
         '
@@ -183,4 +198,6 @@ Partial Class mainform
     Friend WithEvents LEDControlToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LogsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ControlToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MonitorToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LogsToolStripMenuItem1 As ToolStripMenuItem
 End Class

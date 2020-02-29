@@ -256,6 +256,12 @@
     <Compile Include="Utilities\functions.vb" />
     <Compile Include="Utilities\queries.vb" />
     <Compile Include="Utilities\SQLControl.vb" />
+    <Compile Include="Vaults\vaultLogs.Designer.vb">
+      <DependentUpon>vaultLogs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Vaults\vaultLogs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Vaults\vaultMonitoring64.Designer.vb">
       <DependentUpon>vaultMonitoring64.vb</DependentUpon>
     </Compile>
@@ -346,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\viewReports.resx">
       <DependentUpon>viewReports.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vaults\vaultLogs.resx">
+      <DependentUpon>vaultLogs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vaults\vaultMonitoring64.resx">
       <DependentUpon>vaultMonitoring64.vb</DependentUpon>

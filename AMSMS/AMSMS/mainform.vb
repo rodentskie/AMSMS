@@ -90,18 +90,6 @@
         loginForm.txtUname.Focus()
     End Sub
 
-    Private Sub VaultMonitoringToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VaultMonitoringToolStripMenuItem.Click
-        If Environment.Is64BitOperatingSystem Then
-            closeForms()
-            vaultMonitoring64.MdiParent = Me
-            vaultMonitoring64.Show()
-        Else
-            closeForms()
-            'vaultMonitoring.MdiParent = Me
-            'vaultMonitoring.Show()
-        End If
-    End Sub
-
     Private Sub SetCutOffToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SetCutOffToolStripMenuItem.Click
         closeForms()
         attendanceCutOff.MdiParent = Me
@@ -159,6 +147,24 @@
         closeForms()
         ledControlLogs.MdiParent = Me
         ledControlLogs.Show()
+    End Sub
+
+    Private Sub MonitorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MonitorToolStripMenuItem.Click
+        If Environment.Is64BitOperatingSystem Then
+            closeForms()
+            vaultMonitoring64.MdiParent = Me
+            vaultMonitoring64.Show()
+        Else
+            closeForms()
+            'vaultMonitoring.MdiParent = Me
+            'vaultMonitoring.Show()
+        End If
+    End Sub
+
+    Private Sub LogsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles LogsToolStripMenuItem1.Click
+        closeForms()
+        vaultLogs.MdiParent = Me
+        vaultLogs.Show()
     End Sub
 
 End Class

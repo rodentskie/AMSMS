@@ -1282,4 +1282,58 @@
         dgv.Columns(3).DefaultCellStyle.Format = "MM/dd/yyy hh:mm tt"
         dgv.RowTemplate.Height = 30
     End Sub
+
+    'vault logs
+
+    'insert vault logs
+    Public Sub vaultLogsInsert(id As String, path As String)
+        SQL.AddParam("@id", id)
+        SQL.ExecQueryDT("SELECT * FROM employees WHERE LOWER(employee_id)=@id;")
+        If SQL.HasException(True) Then Exit Sub
+        If SQL.RecordCountDT > 0 Then
+            SQL.AddParam("@id", id)
+            SQL.AddParam("@path", path)
+            SQL.ExecQueryDT("INSERT INTO vault_logs (employee_id,image_path) VALUES (@id,@path);")
+            If SQL.HasException(True) Then Exit Sub
+        Else
+            SQL.AddParam("@path", path)
+            SQL.ExecQueryDT("INSERT INTO vault_logs (image_path) VALUES (@path);")
+            If SQL.HasException(True) Then Exit Sub
+        End If
+    End Sub
+
+    'view vault logs
+    Public Sub vaultLogsLoadDgv(dgv As DataGridView, from As String, tos As String)
+        SQL.AddParam("@from", from)
+        SQL.AddParam("@to", tos)
+        SQL.ExecQueryDT("
+            SELECT v.employee_id,CONCAT(e.lname,', ',e.fname) fullname,dates,image_path
+            FROM vault_logs v 
+            LEFT JOIN employees e ON e.employee_id = v.employee_id
+            WHERE convert(varchar, dates, 101) BETWEEN @from AND @to
+            ORDER BY dates DESC;
+        ")
+        If SQL.HasException(True) Then Exit Sub
+        dgv.AllowUserToResizeColumns = False
+        dgv.AllowUserToResizeRows = False
+        dgv.AllowUserToAddRows = False
+        dgv.DataSource = SQL.DBDT
+        dgv.ClearSelection()
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        '##########
+        dgv.Columns(3).Visible = False
+        dgv.Columns(0).HeaderText = "ID #"
+        dgv.Columns(1).HeaderText = "NAME"
+        dgv.Columns(2).HeaderText = "DATE TIME"
+        dgv.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(1).SortMode = DataGridViewColumnSortMode.NotSortable
+        dgv.Columns(2).SortMode = DataGridViewColumnSortMode.NotSortable
+        'wrap column
+        dgv.Columns(1).DefaultCellStyle.WrapMode = DataGridViewTriState.True
+        'end wrap
+        dgv.Columns(2).DefaultCellStyle.Format = "MM/dd/yyy hh:mm tt"
+        dgv.Columns(0).Width = 150
+        dgv.Columns(2).Width = 160
+        dgv.RowTemplate.Height = 30
+    End Sub
 End Class
