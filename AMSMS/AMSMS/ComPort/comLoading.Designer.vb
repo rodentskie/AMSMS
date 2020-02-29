@@ -34,28 +34,31 @@ Partial Class comLoading
         '
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Consolas", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeader.Location = New System.Drawing.Point(12, 14)
+        Me.lblHeader.Location = New System.Drawing.Point(16, 17)
+        Me.lblHeader.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(184, 18)
+        Me.lblHeader.Size = New System.Drawing.Size(140, 22)
         Me.lblHeader.TabIndex = 28
-        Me.lblHeader.Text = "Establising Connection"
+        Me.lblHeader.Text = "Connecting..."
         '
         'lblStatus
         '
         Me.lblStatus.AutoSize = True
         Me.lblStatus.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatus.Location = New System.Drawing.Point(118, 108)
+        Me.lblStatus.Location = New System.Drawing.Point(157, 133)
+        Me.lblStatus.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(109, 13)
+        Me.lblStatus.Size = New System.Drawing.Size(144, 17)
         Me.lblStatus.TabIndex = 27
         Me.lblStatus.Text = "Please Wait . . ."
         '
         'pbIn
         '
         Me.pbIn.BackColor = System.Drawing.SystemColors.Highlight
-        Me.pbIn.Location = New System.Drawing.Point(12, 67)
+        Me.pbIn.Location = New System.Drawing.Point(16, 82)
+        Me.pbIn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pbIn.Name = "pbIn"
-        Me.pbIn.Size = New System.Drawing.Size(5, 23)
+        Me.pbIn.Size = New System.Drawing.Size(7, 28)
         Me.pbIn.TabIndex = 26
         Me.pbIn.TabStop = False
         '
@@ -63,22 +66,24 @@ Partial Class comLoading
         '
         Me.pbOut.BackColor = System.Drawing.Color.White
         Me.pbOut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbOut.Location = New System.Drawing.Point(12, 67)
+        Me.pbOut.Location = New System.Drawing.Point(16, 82)
+        Me.pbOut.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pbOut.Name = "pbOut"
-        Me.pbOut.Size = New System.Drawing.Size(325, 23)
+        Me.pbOut.Size = New System.Drawing.Size(433, 28)
         Me.pbOut.TabIndex = 25
         Me.pbOut.TabStop = False
         '
         'comLoading
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(349, 134)
+        Me.ClientSize = New System.Drawing.Size(465, 165)
         Me.Controls.Add(Me.lblHeader)
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.pbIn)
         Me.Controls.Add(Me.pbOut)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "comLoading"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "comLoading"

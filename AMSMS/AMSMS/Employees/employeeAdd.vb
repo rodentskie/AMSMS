@@ -138,11 +138,11 @@ Public Class employeeAdd
             Exit Sub
         End If
 
-        If String.IsNullOrWhiteSpace(txtMn.Text) Then
-            MessageBox.Show("Please employee's middle name.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            txtMn.Focus()
-            Exit Sub
-        End If
+        'If String.IsNullOrWhiteSpace(txtMn.Text) Then
+        '    MessageBox.Show("Please employee's middle name.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        '    txtMn.Focus()
+        '    Exit Sub
+        'End If
 
         If String.IsNullOrWhiteSpace(txtLn.Text) Then
             MessageBox.Show("Please employee's last name.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning)

@@ -40,50 +40,57 @@ Partial Class positionEdit
         Me.GroupBox1.Controls.Add(Me.txtPosition)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.75!)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 56)
+        Me.GroupBox1.Location = New System.Drawing.Point(16, 69)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(257, 219)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(343, 270)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         '
         'txtRate
         '
-        Me.txtRate.Location = New System.Drawing.Point(6, 123)
+        Me.txtRate.Location = New System.Drawing.Point(8, 151)
+        Me.txtRate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtRate.Name = "txtRate"
-        Me.txtRate.Size = New System.Drawing.Size(245, 23)
+        Me.txtRate.Size = New System.Drawing.Size(325, 27)
         Me.txtRate.TabIndex = 2
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(3, 105)
+        Me.Label3.Location = New System.Drawing.Point(4, 129)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(37, 15)
+        Me.Label3.Size = New System.Drawing.Size(108, 21)
         Me.Label3.TabIndex = 7
-        Me.Label3.Text = "Rate :"
+        Me.Label3.Text = "Rate per min :"
         '
         'btnUpdate
         '
-        Me.btnUpdate.Location = New System.Drawing.Point(88, 173)
+        Me.btnUpdate.Location = New System.Drawing.Point(117, 213)
+        Me.btnUpdate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(75, 23)
+        Me.btnUpdate.Size = New System.Drawing.Size(100, 28)
         Me.btnUpdate.TabIndex = 3
         Me.btnUpdate.Text = "Update"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
         'txtPosition
         '
-        Me.txtPosition.Location = New System.Drawing.Point(6, 57)
+        Me.txtPosition.Location = New System.Drawing.Point(8, 70)
+        Me.txtPosition.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtPosition.Name = "txtPosition"
-        Me.txtPosition.Size = New System.Drawing.Size(245, 23)
+        Me.txtPosition.Size = New System.Drawing.Size(325, 27)
         Me.txtPosition.TabIndex = 1
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 39)
+        Me.Label2.Location = New System.Drawing.Point(4, 48)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(58, 15)
+        Me.Label2.Size = New System.Drawing.Size(75, 21)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Position :"
         '
@@ -91,21 +98,23 @@ Partial Class positionEdit
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(8, 23)
+        Me.Label1.Location = New System.Drawing.Point(11, 28)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(114, 19)
+        Me.Label1.Size = New System.Drawing.Size(143, 23)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Update Position"
         '
         'positionEdit
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(281, 287)
+        Me.ClientSize = New System.Drawing.Size(375, 353)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.KeyPreview = True
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "positionEdit"
